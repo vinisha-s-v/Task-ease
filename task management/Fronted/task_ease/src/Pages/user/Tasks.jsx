@@ -70,7 +70,7 @@ const Tasks = () => {
         <FaPlus size={24} />
       </button>
 
-      <div className="w-full py-4 bg-blue-200">
+      <div className="w-full py-4">
         <h1 className="text-2xl font-bold flex justify-center text-blue-800">
           Your Tasks
         </h1>
@@ -92,13 +92,13 @@ const Tasks = () => {
                 <div className="flex space-x-2 justify-end mt-2">
                   <button
                     onClick={() => handleUpdate(task)}
-                    className="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600"
+                    className="bg-blue-400 text-white px-2 py-1 rounded-md hover:bg-blue-500"
                   >
                     Update
                   </button>
                   <button
                     onClick={() => deleteTask(task.id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600"
+                    className="bg-blue-700 text-white px-2 py-1 rounded-md hover:bg-blue-800"
                   >
                     Delete
                   </button>

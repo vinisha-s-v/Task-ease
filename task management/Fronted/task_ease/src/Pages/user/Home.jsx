@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import NavigationBar from '../../Components/NavigationBar'
 import AuthContext from '../../Providers/AuthProvider'
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
 
@@ -11,6 +12,11 @@ const Home = () => {
   return (
     <div>
       <NavigationBar/>
+      
+      
+      <div>
+        {<Outlet />}
+      </div>
     </div>
   )
 }

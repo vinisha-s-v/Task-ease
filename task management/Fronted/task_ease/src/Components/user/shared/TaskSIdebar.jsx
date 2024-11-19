@@ -2,8 +2,12 @@ import React from 'react';
 
 const TaskSIdebar = () => {
   return (
-    <div className='w-64 bg-red-400 h-screen'>
-      <h1>hai</h1>
+    <div className='w-64 bg-blue-200 h-screen'>
+     <div className='flex-1 py-8 flex flex-col gap-0.5'>
+      
+      
+     </div>
+    
     </div>
   );
 }

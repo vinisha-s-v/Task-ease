@@ -34,12 +34,19 @@ function App() {
           {/* user start */}
 
           <Route path="/login" element={<UserLoginPage />}></Route>
+
           <Route path="/home" element={<Home />}>
-            <Route path="user" element={<TaskLayout />}>
-              <Route index element={<Tasks />} />
-              <Route path="update-task" element={<UpdateTaskForm />}></Route>
+            <Route path="user" element={<TaskLayout/>}>
+            <Route index element={<Tasks />} />
+                
             </Route>
           </Route>
+
+
+          {/* <Route path="/user" element={<TaskLayout />}>
+              
+              <Route path="update-task" element={<UpdateTaskForm />}></Route>
+            </Route> */}
         </Routes>
       </Router>
     </AuthProvider>

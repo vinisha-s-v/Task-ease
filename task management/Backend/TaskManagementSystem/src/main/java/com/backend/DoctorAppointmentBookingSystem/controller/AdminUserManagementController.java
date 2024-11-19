@@ -64,7 +64,7 @@ public class AdminUserManagementController {
 
     // Endpoint to search users
         @GetMapping("/users/search")
-    public List<Users> searchUsers(@RequestParam("keyword") String keyword) {
+    public List<Users> searchUsers(@RequestParam("keyword") String keyword) { 
         return adminUserManagementService.searchUsers(keyword);
     }
 
