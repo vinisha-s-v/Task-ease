@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import AdminLoginPage from "./Pages/admin/AdminLoginPage";
 
 import { AuthProvider } from "./Providers/AuthProvider";
@@ -21,7 +21,7 @@ function App() {
       <Router>
         <Routes>
           {/* admin */}
-          <Route path="/" element={<AdminLoginPage />} />
+          <Route path="/admin_login" element={<AdminLoginPage />} />
           <Route path="/admin" element={<Layout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="users" element={<AdminUserManagement />} />
@@ -32,6 +32,8 @@ function App() {
           {/* admin end */}
 
           {/* user start */}
+           {/* Redirect the root path "/" to the login page */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
 
           <Route path="/login" element={<UserLoginPage />}></Route>
 
