@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import carousel1 from '../../assets/user/carousel1.jpg'
 import carousel2 from '../../assets/user/carousel2.jpg'
 import carousel3 from '../../assets/user/carousel3.jpg'
+import FooterHome from '../../Components/FooterHome';
 
 
 const Home = () => {
@@ -109,7 +110,7 @@ const Home = () => {
       </div>
 
 
-
+<FooterHome/>
     </div>
   )
 }

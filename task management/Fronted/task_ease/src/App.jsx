@@ -14,6 +14,8 @@ import Dashboard from "./Components/Dashboard";
 import TaskLayout from "./Components/user/shared/TaskLayout";
 import AdminDashboard from "./Pages/admin/AdminDashboard";
 import AdminUserManagement from "./Pages/admin/AdminUserManagement";
+import About from "./Pages/user/About";
+import Profile from "./Pages/user/Profile";
 
 function App() {
   return (
@@ -39,17 +41,24 @@ function App() {
 
           <Route path="/home" element={<Home />}>
             <Route path="user" element={<TaskLayout/>}>
+           
             <Route index element={<Tasks />} />
                 
             </Route>
           </Route>
+
+          <Route path="/about" element={<About/>}/>
 
 
           {/* <Route path="/user" element={<TaskLayout />}>
               
               <Route path="update-task" element={<UpdateTaskForm />}></Route>
             </Route> */}
-        </Routes>
+
+
+
+
+        </Routes>    
       </Router>
     </AuthProvider>
   );

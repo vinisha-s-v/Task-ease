@@ -65,7 +65,8 @@ const Tasks = () => {
     <div className="relative h-screen w-full bg-blue-50">
       <button
         onClick={openForm}
-        className="fixed z-10 bottom-10 right-10 bg-blue-400 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-blue-600"
+       
+        className="fixed z-30 bottom-16 right-10 bg-blue-400 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-blue-600"
       >
         <FaPlus size={24} />
       </button>
