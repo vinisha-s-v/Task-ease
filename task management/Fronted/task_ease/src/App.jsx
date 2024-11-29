@@ -16,6 +16,7 @@ import AdminDashboard from "./Pages/admin/AdminDashboard";
 import AdminUserManagement from "./Pages/admin/AdminUserManagement";
 import About from "./Pages/user/About";
 import Profile from "./Pages/user/Profile";
+import Register from "./Pages/user/Register";
 
 function App() {
   return (
@@ -56,9 +57,10 @@ function App() {
             </Route> */}
 
 
+<Route path="/register" element={<Register/>}/> 
 
-
-        </Routes>    
+        </Routes>  
+        
       </Router>
     </AuthProvider>
   );
