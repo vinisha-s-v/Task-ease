@@ -68,6 +68,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception{
+        System.out.println(request +"request");
 
         try {
 //            UserDetails userDetails = myUserDetailsService.loadUserByUsername(request.getEmail());

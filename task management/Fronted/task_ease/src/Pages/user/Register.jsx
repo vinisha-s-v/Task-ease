@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import BackgroundImage from '../../assets/user/backimg.avif'
 import { MdPassword } from 'react-icons/md';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 const Register = () => {
 
-    const Register =()=>{
+   
+        const navigate = useNavigate();
         const [formData,setFormData] = useState({
             firstName:'',
             lastName:'',
@@ -13,7 +15,7 @@ const Register = () => {
             password:'',
             
         });
-    }
+  
 
    const [error,setError]=useState('');
 
@@ -29,25 +31,31 @@ const Register = () => {
     const handleSubmit =async (e)=>{
         e.preventDefault();
 
-        if (formData.password !== formData.confirmPassword) {
-            setError('Passwords do not match');
-            return;
+        // if (formData.password !== formData.confirmPassword) {
+        //     setError('Passwords do not match');
+            // return;
+          // }
+           navigate("/home")
+          try {
+            const response = await axios.post('http://localhost:8080/auth/register', {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              password: formData.password,
+              role: 'USER'
+            });
+            console.log('Registration successful:', response.data);
+          } catch (error) {
+            setError(error.response?.data?.message || 'Registration failed');
           }
-
-        //   try{
-        //     const response =await axios.post('http://localhost:8080/auth/register'),{
-        //         // firstName:formData.firstName,
-        //     }
-        //   }
-        //   catch{
-
-        //   }
+        };
+      
 
         
-    }
+    
   return (
     <div className='min-h-screen bg-cover bg-center flex flex-col justify-center items-center'
-    // style={{backgroundImage:"url('BackgroundImage')"}}
+   style={{backgroundImage:`url(${BackgroundImage}')`}}
     >
 
         <div className='bg-white bg-opacity-90 py-8 px-6 shadow-lg rounded-lg sm:max-w-md w-full' >
@@ -55,9 +63,9 @@ const Register = () => {
 
 
               <form className='mt-6 space-y-4 ' onSubmit={handleSubmit}>
-                 {/* {error && (
+                 {error && (
                     <div className='text-red-500 text-sm text-center'>{error}</div>
-                 )} */}
+                 )}
 
                  <div>
                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -71,7 +79,7 @@ const Register = () => {
               type="text"
               required
               className="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            //    value={formData.firstName}
+               value={formData.firstName}
               onChange={handleChange}
             />
           </div>
@@ -86,7 +94,7 @@ const Register = () => {
               type="text"
               required
               className="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            //   value={formData.lastName}
+              value={formData.lastName}
               onChange={handleChange}
             />
           </div>
@@ -101,7 +109,7 @@ const Register = () => {
               type="email"
               required
               className="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            //   value={formData.email}
+               value={formData.email}
               onChange={handleChange}
             />
           </div>
@@ -111,12 +119,13 @@ const Register = () => {
               Password
             </label>
             <input
+              // icon= {MdPassword}
               id="password"
               name="password"
               type="password"
               required
               className="block w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            //   value={formData.password}
+              value={formData.password}
               onChange={handleChange}
             />
           </div>
@@ -131,10 +140,21 @@ const Register = () => {
           </div>
                  
               </form>
+
+              <div className="mt-4 text-center">
+          <p className="text-sm">
+            Already have an account?{' '}
+            <button
+              className="text-blue-600 hover:underline"
+              onClick={() => navigate('/login')} // Navigate to the login page
+            >
+              Login here
+            </button>
+          </p>
+        </div>
         </div>
       
     </div>
   );
 }
-
 export default Register;

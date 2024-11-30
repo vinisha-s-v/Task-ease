@@ -2,18 +2,34 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateTaskForm from "../../Components/CreateTaskForm";
+import { toast } from "react-toastify";
 
 const AdminDashBord = () => {
+
+
+
   const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  const[showToast,setShowToast]=useState(false)
+
   //fetch user from backend
   useEffect(() => {
     fetchUsers();
   }, []);
+
+
+  const handleClick = () =>{
+    toast.success("Action was successful!", {
+      position: "top-right",
+    });
+  }
+
+
+
 
   const token = localStorage.getItem("authToken");
   console.log(token, "vijay");
@@ -49,23 +65,29 @@ const AdminDashBord = () => {
         },
       });
 
+      console.log("Delete response:", response.data);
       setUsers(users.filter((user) => user.id !== userId));
       console.log("User deleted Successfully");
+      
+      showToast(true);
+
+      setTimeout(()=>setShowToast(false),3000);
+
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
 
   const handleAddUser = () => {
-    navigate("/add-user");
+    navigate("/admin/add-user");
   };
   const handleUpdate = (user) => {
     console.log(user);
 
-    navigate("/update-user", { state: { user } });
+    navigate("/admin/update-user", { state: { user } });
   };
 
-  const userSerchManagemwntAdmin = async (token, keyword) => {
+  const userSerchManagementAdmin = async (token, keyword) => {
     try {
       const response = await axios.get(
         `http://localhost:8080/api/admin/users/search?keyword=${keyword}`,
@@ -106,6 +128,7 @@ const AdminDashBord = () => {
             },
           }
         );
+        console.log("API Response :" ,response.data)
         setUsers(response.data || []); // Update users with search results or empty array
       } catch (error) {
         console.error("Error fetching search results:", error);
@@ -126,7 +149,7 @@ const AdminDashBord = () => {
       </div>
 
       <div className="flex justify-between">
-        <h1 className="text-white text-3xl font-bold mb-6">USERS</h1>
+        <h1 className="text-white text-3xl font-bold mb-6" onClick={handleClick}>USERS</h1>
         <button
           type="button"
           onClick={handleAddUser}
@@ -150,6 +173,7 @@ const AdminDashBord = () => {
                   {user.firstName} {user.lastName}
                 </h2>
                 <p className="mb-1">Email: {user.email}</p>
+              
                 <p className="mb-1">Role: {user.role}</p>
 
                 <div className=" flex justify-between">
@@ -179,6 +203,9 @@ const AdminDashBord = () => {
             )
         )}
       </div>
+
+
+      {showToast && <Toast/>}
     </div>
   );
 };

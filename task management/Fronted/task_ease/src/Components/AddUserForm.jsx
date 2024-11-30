@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 const AddUserForm = () => {
   const [adduser, setAddUser] = useState({
     firstName: "",
@@ -17,7 +19,7 @@ const AddUserForm = () => {
       [name]: value,
     }));
   };
-
+ const navigate =useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("authToken");
@@ -31,11 +33,13 @@ const AddUserForm = () => {
             "Content-Type": "application/json",
           },
         }
+        
       );
       console.log("User Added Sucessfully:", response.data);
     } catch (error) {
       console.log(error);
     }
+    navigate("/admin/users");
   };
   return (
     <div className="bg-black min-h-screen p-6">

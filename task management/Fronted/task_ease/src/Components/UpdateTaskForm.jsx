@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateTaskForm = ({ task, onClose }) => {
   const [title, setTitle] = useState(task.title);
@@ -14,7 +15,9 @@ const UpdateTaskForm = ({ task, onClose }) => {
     setScheduleTime(task.scheduleTime);
     setDeadLine(task.deadLine);
   }, [task]);
+  
 
+  const navigate=useNavigate()
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("authToken");
@@ -29,6 +32,7 @@ const UpdateTaskForm = ({ task, onClose }) => {
             "Content-Type": "application/json",
           },
         }
+        
       );
 
       console.log("Task Updated:", response.data);
@@ -36,6 +40,8 @@ const UpdateTaskForm = ({ task, onClose }) => {
     } catch (error) {
       console.error("Error updating task:", error);
     }
+
+ 
   };
 
   return (

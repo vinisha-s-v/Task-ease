@@ -5,8 +5,8 @@ import AuthContext from '../../Providers/AuthProvider';
 
 
 const UserLoginPage = () => {
-    const[email,setEmail]=useState('rishi@gmail.com');
-    const[password,setPassword]=useState('r@123')
+    const[email,setEmail]=useState('');
+    const[password,setPassword]=useState('')
     const[error,setError]=useState('')
     const Navigate =useNavigate();
     const { setAuth } = useContext(AuthContext)
@@ -30,7 +30,7 @@ const UserLoginPage = () => {
             if(response.status===200 && response.data.token){
               
                 localStorage.setItem("authToken",response.data.token)
-                Navigate('/home');
+                Navigate('/task');
               
             }
             else{

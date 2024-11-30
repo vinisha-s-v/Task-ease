@@ -31,7 +31,7 @@ public class AdminUserManagementServiceImp implements  AdminUserManagementServic
         Users newUser = new Users(); //create a new user from the request
         newUser.setFirstName(request.getFirstName());
         newUser.setLastName(request.getLastName());
-        newUser. setEmail(request.getPassword());
+        newUser. setEmail(request.getEmail());
         newUser.setPassword(passwordEncoder.encode(request.getPassword()));
         newUser.setRole(request.getRole());
 
@@ -73,6 +73,7 @@ public class AdminUserManagementServiceImp implements  AdminUserManagementServic
         else {
             throw  new RuntimeException("User not found with id:"+id);
         }
+
 
     }
 

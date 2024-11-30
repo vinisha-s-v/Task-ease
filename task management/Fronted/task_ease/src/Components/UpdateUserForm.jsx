@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UpdateUserForm = () => {
   const location = useLocation();
@@ -49,7 +49,7 @@ const UpdateUserForm = () => {
 
     setPassword("");
   };
-
+  const navigate=useNavigate();
   const handleSave = async() =>{
     const saveUpdatedUser = {...user,...updateUser};
     const token=localStorage.getItem('authToken');
@@ -68,6 +68,7 @@ const UpdateUserForm = () => {
       console.log(error);
       
     }
+    navigate("/admin/users");
     
 
   } 

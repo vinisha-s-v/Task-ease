@@ -18,13 +18,18 @@ import About from "./Pages/user/About";
 import Profile from "./Pages/user/Profile";
 import Register from "./Pages/user/Register";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 function App() {
   return (
     <AuthProvider>
+    <ToastContainer />
+
       <Router>
         <Routes>
           {/* admin */}
-          <Route path="/admin_login" element={<AdminLoginPage />} />
+          <Route path="/admin-login" element={<AdminLoginPage />} />
           <Route path="/admin" element={<Layout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="users" element={<AdminUserManagement />} />
@@ -58,6 +63,7 @@ function App() {
 
 
 <Route path="/register" element={<Register/>}/> 
+
 
         </Routes>  
         
