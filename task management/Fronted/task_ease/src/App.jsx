@@ -49,6 +49,7 @@ function App() {
             <Route path="user" element={<TaskLayout/>}>
            
             <Route index element={<Tasks />} />
+            {/* <Route path ="task" element={<Tasks/>}/> */}
                 
             </Route>
           </Route>

@@ -8,7 +8,7 @@ const UserLoginPage = () => {
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('')
     const[error,setError]=useState('')
-    const Navigate =useNavigate();
+    const navigate =useNavigate();
     const { setAuth } = useContext(AuthContext)
 
 
@@ -30,7 +30,7 @@ const UserLoginPage = () => {
             if(response.status===200 && response.data.token){
               
                 localStorage.setItem("authToken",response.data.token)
-                Navigate('/task');
+                navigate('/home/user');
               
             }
             else{
