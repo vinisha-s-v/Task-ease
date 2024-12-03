@@ -85,7 +85,7 @@ const Tasks = () => {
                 <h3 className="text-xl font-semibold mb-2">{task.title}</h3>
                 <p className="text-gray-600 mb-1">{task.description}</p>
                 <p className="text-green-600 mb-1">
-                  Scheduled: {format(new Date(task.scheduleTime), "yyyy-MM-dd HH:mm")}
+                  {/* Scheduled: {format(new Date(task.scheduleTime), "yyyy-MM-dd HH:mm")} */}
                 </p>
                 <p className="text-red-600 mb-1">
                   Deadline: {format(new Date(task.deadLine), "yyyy-MM-dd HH:mm")}

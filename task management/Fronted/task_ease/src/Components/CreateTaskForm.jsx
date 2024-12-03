@@ -22,7 +22,7 @@ const CreateTaskForm = ({ token, onClose }) => {
         {
           title,
           description,
-          scheduleTime,
+         // scheduleTime,
           deadLine
 
         },
@@ -37,7 +37,7 @@ const CreateTaskForm = ({ token, onClose }) => {
       // console.log(scheduleTime);
       // console.log(deadline);
       onClose();
-      navigate('/tasks');
+      navigate('/home/user');
       // closeForm();
     
     } catch (err) {
