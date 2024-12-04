@@ -103,6 +103,11 @@ public class TaskServiceImp implements  TaskService {
         return taskRepo.save(task);
 
     }
+
+    @Override
+    public List<Tasks> getTasksByStatus(TASK_STATUS status) {
+        return taskRepo.findByStatus(status);
+    }
 //
 //    @Override
 //    public Tasks scheduledTask(Long id, Date scheduleTime) throws Exception {
@@ -126,6 +131,8 @@ public class TaskServiceImp implements  TaskService {
 
         }
     }
+
+
 
 
 //    @Override

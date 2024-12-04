@@ -71,6 +71,14 @@ public class TaskController {
 
 
     }
+
+    @GetMapping("/{status}")
+    public ResponseEntity<List<Tasks>> getTasksByStatus(@PathVariable TASK_STATUS status,@RequestHeader("Authorization") String authHeader)throws  Exception{
+        Users user=userService.findUsernameByAuthorizationHeader(authHeader);
+        List<Tasks> tasks = taskService.getTasksByStatus(status);
+        return new ResponseEntity<>(tasks,HttpStatus.OK);
+
+    }
 //    @PostMapping("/schedule/{id}")
 //    public  ResponseEntity<Tasks> scheduleTask(@PathVariable Long id,
 //                                               @RequestParam Date scheduleTime,

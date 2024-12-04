@@ -16,6 +16,8 @@ public interface TaskRepo extends JpaRepository<Tasks,Long> {
 
     Optional<Users> findByTitle(String username);
 
+    List<Tasks>findByStatus(TASK_STATUS status);
+
 //    @Query("SELECT t FROM Tasks t WHERE " +
 //            "(:title IS NULL OR t.title LIKE %:title%) AND " +
 //            "(:status IS NULL OR t.status = :status) AND " +

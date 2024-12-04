@@ -20,6 +20,7 @@ import Register from "./Pages/user/Register";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import PendingTask from "./Pages/user/PendingTask";
 
 function App() {
   return (
@@ -50,9 +51,11 @@ function App() {
            
             <Route index element={<Tasks />} />
             {/* <Route path ="task" element={<Tasks/>}/> */}
+           
                 
             </Route>
           </Route>
+          <Route path="/pending-task" element={<PendingTask/>}/>
 
           <Route path="/about" element={<About/>}/>
 

@@ -86,9 +86,10 @@ const Tasks = () => {
                 <p className="text-gray-600 mb-1">{task.description}</p>
                 <p className="text-green-600 mb-1">
                   {/* Scheduled: {format(new Date(task.scheduleTime), "yyyy-MM-dd HH:mm")} */}
+                  <strong>Scheduled:</strong> {new Date(task.createdAt).toLocaleString()}
                 </p>
                 <p className="text-red-600 mb-1">
-                  Deadline: {format(new Date(task.deadLine), "yyyy-MM-dd HH:mm")}
+                 <strong>Deadline:</strong>  {format(new Date(task.deadLine), "yyyy-MM-dd HH:mm")}
                 </p>
                 <div className="flex space-x-2 justify-end mt-2">
                   <button

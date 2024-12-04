@@ -22,7 +22,7 @@ const CreateTaskForm = ({ token, onClose }) => {
         {
           title,
           description,
-         // scheduleTime,
+          scheduleTime,
           deadLine
 
         },
@@ -36,6 +36,9 @@ const CreateTaskForm = ({ token, onClose }) => {
       // console.log(response.data,"data");
       // console.log(scheduleTime);
       // console.log(deadline);
+
+      const { createdAt } = response.data; // Extract createdAt from the response
+      console.log("Task Created At:", createdAt);
       onClose();
       navigate('/home/user');
       // closeForm();
