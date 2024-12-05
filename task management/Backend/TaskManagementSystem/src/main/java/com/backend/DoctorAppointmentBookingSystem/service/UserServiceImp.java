@@ -125,4 +125,21 @@ public class UserServiceImp implements UserService {
       }
 
     }
+    @
+    public  void softDeleteUser(Long id){
+
+        Optional<Users> usersOptional = repo.findById(id);
+        if(usersOptional.isEmpty() || usersOptional.get().isDeleted()){
+            throw  new RuntimeException("User not found or already deletes");
+
+        }
+
+        repo.softDeleteUser(id);
+
+    }
+
+
+
 }
+
+

@@ -31,4 +31,7 @@ public class Users {
     @Enumerated(EnumType.STRING) //This tells JPA to store the value of the role field as a string in the database.
     private USER_ROLE role;
 
+
+    private  boolean isDeleted =false; //soft delete flag
+
 }

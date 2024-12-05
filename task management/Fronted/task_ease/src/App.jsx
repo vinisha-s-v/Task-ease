@@ -21,7 +21,7 @@ import Register from "./Pages/user/Register";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import PendingTask from "./Pages/user/PendingTask";
-
+import CompletedTask from "./Pages/user/CompletedTask";
 function App() {
   return (
     <AuthProvider>
@@ -43,6 +43,7 @@ function App() {
           {/* user start */}
            {/* Redirect the root path "/" to the login page */}
           <Route path="/" element={<Navigate to="/login" replace />} />
+        
 
           <Route path="/login" element={<UserLoginPage />}></Route>
 
@@ -55,7 +56,7 @@ function App() {
                 
             </Route>
           </Route>
-          <Route path="/pending-task" element={<PendingTask/>}/>
+         
 
           <Route path="/about" element={<About/>}/>
 
@@ -67,7 +68,8 @@ function App() {
 
 
 <Route path="/register" element={<Register/>}/> 
-
+<Route path="/task/pending-tasks" element={<PendingTask/>}/>
+<Route path="/task/completed-tasks" element={<CompletedTask/>}/>
 
         </Routes>  
         

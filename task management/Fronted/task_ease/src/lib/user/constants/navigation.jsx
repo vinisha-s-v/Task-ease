@@ -9,13 +9,13 @@ export const TASK_SIDEBAR_LINK=[
     },{
         key: "completedTasks",
         label: "Completed Tasks",
-        path: "/completed-tasks",
+        path: "/task/completed-tasks",
         icon: <AiOutlineCheckCircle />,
       },
       {
         key: "pendingTasks",
         label: "Pending Tasks",
-        path: "/pending-tasks",
+        path: "/task/pending-tasks",
         icon: <AiOutlineClockCircle />,
       },
 ]
