@@ -68,5 +68,13 @@ public class AdminUserManagementController {
         return adminUserManagementService.searchUsers(keyword);
     }
 
+//
+    @DeleteMapping("/users/deleted")
+    public  ResponseEntity<List<Users>> getDeletedUsers(@RequestHeader("Authorization") String authHeader) throws Exception{
+        Users users =userService.findUsernameByAuthorizationHeader(authHeader);
+        List<Users> deletedUsers = userRepo.findDeletedUsers();
+        return  new ResponseEntity<>(deletedUsers,HttpStatus.OK);
+    }
+
 }
  

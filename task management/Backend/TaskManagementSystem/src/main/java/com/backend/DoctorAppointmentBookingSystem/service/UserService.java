@@ -17,5 +17,7 @@ public interface UserService {
 
     List<Users> getAllActiveUsers();
 
-    void softDeleteuser(Long id);
+
+
+
 }

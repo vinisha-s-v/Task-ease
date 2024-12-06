@@ -30,4 +30,6 @@ public interface UserRepo  extends JpaRepository<Users,Long> {
     @Query("UPDATE Users u SET u.isDeleted = true WHERE u.id = :id")
     void softDeleteUser(@Param("id") Long id);
 
+    List<Users> findDeletedUsers();
 }
+ 

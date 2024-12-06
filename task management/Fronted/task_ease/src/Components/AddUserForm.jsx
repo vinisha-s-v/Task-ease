@@ -36,10 +36,12 @@ const AddUserForm = () => {
         
       );
       console.log("User Added Sucessfully:", response.data);
+
+      navigate("/admin/users");
     } catch (error) {
       console.log(error);
     }
-    navigate("/admin/users");
+
   };
   return (
     <div className="bg-black min-h-screen p-6">

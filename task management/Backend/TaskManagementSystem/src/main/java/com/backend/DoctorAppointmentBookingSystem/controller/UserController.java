@@ -50,12 +50,7 @@ public class UserController {
        return  service.getAllActiveUsers();
   }
 
- @DeleteMapping("/{id}")
 
-    public  ResponseEntity<String> deleteUser(@PathVariable Long id){
-        service.softDeleteuser(id);
-        return  ResponseEntity.ok("User soft-deleted successfully");
- }
 
 
 }

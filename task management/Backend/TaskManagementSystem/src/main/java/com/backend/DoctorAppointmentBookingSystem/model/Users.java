@@ -32,6 +32,7 @@ public class Users {
     private USER_ROLE role;
 
 
+    @Column( nullable = false)
     private  boolean isDeleted =false; //soft delete flag
 
 }

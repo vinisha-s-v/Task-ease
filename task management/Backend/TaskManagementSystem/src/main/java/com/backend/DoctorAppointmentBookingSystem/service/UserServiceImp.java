@@ -8,6 +8,7 @@ import com.backend.DoctorAppointmentBookingSystem.model.Users;
 import com.backend.DoctorAppointmentBookingSystem.repository.UserRepo;
 import com.backend.DoctorAppointmentBookingSystem.response.AuthenticationResponse;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -98,7 +100,7 @@ public class UserServiceImp implements UserService {
             }
 
         } catch (Exception e) {
-            throw new Exception("Invalid");
+            throw   new Exception("Invalid");
         }
 
 
@@ -125,17 +127,11 @@ public class UserServiceImp implements UserService {
       }
 
     }
-    @
-    public  void softDeleteUser(Long id){
 
-        Optional<Users> usersOptional = repo.findById(id);
-        if(usersOptional.isEmpty() || usersOptional.get().isDeleted()){
-            throw  new RuntimeException("User not found or already deletes");
 
-        }
 
-        repo.softDeleteUser(id);
-
+    public List<Users>getAllActiveUsers(){
+        return repo.findAllActiveUsers();
     }
 
 

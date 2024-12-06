@@ -82,5 +82,11 @@ public class AdminUserManagementServiceImp implements  AdminUserManagementServic
         return  userRepo.searchUsers(keyword);
     }
 
+    @Override
+    public void softDeleteUser(Long id) throws Exception {
+        Users users =userRepo.findById(id).orElseThrow(()->new Exception("User not found"));
+        users.setDeleted(true);
+        userRepo.save(users);
+    }
 
 }

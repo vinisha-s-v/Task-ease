@@ -16,4 +16,6 @@ public interface AdminUserManagementService  {
     Users deleteUsers(Long id);
 
     List<Users> searchUsers(String keyword);
+
+    void softDeleteUser(Long id) throws Exception;
 }
