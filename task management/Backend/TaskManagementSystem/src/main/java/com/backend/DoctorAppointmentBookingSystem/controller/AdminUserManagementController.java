@@ -9,6 +9,7 @@ import com.backend.DoctorAppointmentBookingSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +62,20 @@ public class AdminUserManagementController {
 
     }
 
+    @GetMapping("/users/deleted")
+    public  ResponseEntity<List<Users>> getDeletedUsers(@RequestHeader("Authorization") String authHeader) throws Exception{
+        Users users =userService.findUsernameByAuthorizationHeader(authHeader);
+
+               List<Users> deletedUsers = userRepo.findDeletedUsers();
+    return  new ResponseEntity<>(deletedUsers,HttpStatus.OK);
+    }
+
+    @PutMapping("/users/restore/{id}")
+    public ResponseEntity<Users> restoreUsers(@PathVariable Long id,@RequestHeader("Authorization") String authHeader) throws  Exception{
+        Users users= userService.findUsernameByAuthorizationHeader(authHeader);
+        Users restoreUser=adminUserManagementService.restoreUser(id);
+        return   new ResponseEntity<>(restoreUser,HttpStatus.OK);
+    }
 
     // Endpoint to search users
         @GetMapping("/users/search")
@@ -69,12 +84,7 @@ public class AdminUserManagementController {
     }
 
 //
-    @DeleteMapping("/users/deleted")
-    public  ResponseEntity<List<Users>> getDeletedUsers(@RequestHeader("Authorization") String authHeader) throws Exception{
-        Users users =userService.findUsernameByAuthorizationHeader(authHeader);
-        List<Users> deletedUsers = userRepo.findDeletedUsers();
-        return  new ResponseEntity<>(deletedUsers,HttpStatus.OK);
-    }
+
 
 }
  

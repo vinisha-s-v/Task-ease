@@ -89,4 +89,16 @@ public class AdminUserManagementServiceImp implements  AdminUserManagementServic
         userRepo.save(users);
     }
 
+    @Override
+    public Users restoreUser(Long id) throws Exception {
+        Users user =userRepo.findById(id).orElseThrow(()-> new  Exception("User not found :" + id));
+        if(!user.isDeleted()){
+            throw  new RuntimeException("User is already active and cannot be restored.");
+        }
+        user.setDeleted(false);
+        userRepo.save(user);
+
+        return user;
+    }
+
 }

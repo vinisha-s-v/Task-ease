@@ -53,12 +53,15 @@ const AdminDashBord = () => {
     }
   };
 
+
+
   //method for delete user
 
   const deleteUser = async (userId) => {
     const token = localStorage.getItem("authToken");
     try {
-      await axios.delete(`http://localhost:8080/api/admin/users/${userId}`, {
+      const deleteUser = users.find((user) => user.id === userId);
+    const response =  await axios.delete(`http://localhost:8080/api/admin/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -66,17 +69,57 @@ const AdminDashBord = () => {
       });
 
       console.log("Delete response:", response.data);
-      setUsers(users.filter((user) => user.id !== userId));
+      // setUsers(users.filter((user) => user.id !== userId));
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+
       console.log("User deleted Successfully");
       
-      showToast(true);
+      
+toast.info(
+  <div>
+    user deleted Successfully!{""}
+    <button onClick={()=>restoreUser(deleteUser)}
+       className="text-blue-500 underline"
+       >
+        undo
+
+    </button>
+  </div>,
+  {autoClose:5000}
+)
 
       setTimeout(()=>setShowToast(false),3000);
 
     } catch (error) {
       console.error("Error deleting user:", error);
+      // toast.error("Failed to delete user!");
+     // toast.loading("loading");
     }
   };
+
+  const restoreUser =async(user)=>{
+    const token =localStorage.getItem("authToken");
+    try{
+      const response = await axios.put(`http://localhost:8080/api/admin/users/restore/${user.id}`,
+        user,{
+          headers:{
+            Authorization:`Bearer ${token}`,
+            "Content-Type":"application/json",
+          },
+        }
+        
+      )
+      setUsers((prevUsers) => [...prevUsers, response.data]);
+      toast.success("User restored successfully!");
+    }
+    catch(error){
+      console.error("Error restoring user:",error);
+      toast.error("Failed to restore user!");
+    }
+  }
+
+
+
 
   const handleAddUser = () => {
     navigate("/admin/add-user");
