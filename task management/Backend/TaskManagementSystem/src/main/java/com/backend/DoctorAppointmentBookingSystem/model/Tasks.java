@@ -32,6 +32,9 @@ public class Tasks {
     @ManyToOne
     private Users assignedUserId;
 
+    @Column(nullable = false)
+    private  boolean is_deleted = false;
+
 
 //    @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

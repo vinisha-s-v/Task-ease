@@ -100,7 +100,7 @@ public class UserServiceImp implements UserService {
             }
 
         } catch (Exception e) {
-            throw   new Exception("Invalid");
+            throw  new Exception("Invalid");
         }
 
 

@@ -78,7 +78,7 @@ const CreateTaskForm = ({ token, onClose }) => {
           value={description} />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">
             Scheduled Time
           </label>
@@ -88,7 +88,7 @@ const CreateTaskForm = ({ token, onClose }) => {
             value={scheduleTime}
             onChange={(e) => setScheduleTime(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">Deadline</label>

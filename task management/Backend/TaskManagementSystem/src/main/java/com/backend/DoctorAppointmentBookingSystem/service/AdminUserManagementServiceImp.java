@@ -66,8 +66,14 @@ public class AdminUserManagementServiceImp implements  AdminUserManagementServic
         Optional<Users> deletedUser =userRepo.findById(id); //find the user from repo
 
         if(deletedUser.isPresent()){
-            userRepo.deleteById(id); //delete the user from the repo-database
-            return deletedUser.get();
+            Users users=deletedUser.get();
+            users.setDeleted(true);
+            userRepo.save(users);
+            return  users;
+
+
+//            userRepo.deleteById(id); //delete the user from the repo-database
+//            return deletedUser.get();
 
         }
         else {

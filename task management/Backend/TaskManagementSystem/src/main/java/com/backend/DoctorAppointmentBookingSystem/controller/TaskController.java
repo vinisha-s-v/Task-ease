@@ -56,8 +56,9 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> DeleteTask( @PathVariable Long id, @RequestHeader("Authorization") String authHeader) throws Exception {
-        Users user =userService.findUsernameByAuthorizationHeader(authHeader);
-
+        Users users =userService.findUsernameByAuthorizationHeader(authHeader);
+//Tasks tasks=taskService.deleteTask(id);
+//return new ResponseEntity<>(HttpStatus.OK);
           taskService.deleteTask(id);
             return new ResponseEntity<>(HttpStatus.OK);
 

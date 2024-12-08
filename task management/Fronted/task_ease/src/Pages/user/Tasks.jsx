@@ -35,7 +35,7 @@ const Tasks = () => {
           "Content-Type": "application/json",
         },
       });
-      setTasks(response.data);
+      setTasks(response.data.reverse());
     } catch (error) {
       console.error(error);
     }
