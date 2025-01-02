@@ -18,6 +18,5 @@ public interface UserService {
     List<Users> getAllActiveUsers();
 
 
-
-
+    void resetPassword(String newPassword);
 }

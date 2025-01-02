@@ -35,7 +35,7 @@ const Register = () => {
         //     setError('Passwords do not match');
             // return;
           // }
-           navigate("/home")
+           navigate("/login")
           try {
             const response = await axios.post('http://localhost:8080/auth/register', {
               firstName: formData.firstName,

@@ -1,6 +1,7 @@
 package com.backend.DoctorAppointmentBookingSystem.controller;
 
 import com.backend.DoctorAppointmentBookingSystem.request.AuthenticationRequest;
+import com.backend.DoctorAppointmentBookingSystem.request.PasswordRequest;
 import com.backend.DoctorAppointmentBookingSystem.request.RegisterRequest;
 import com.backend.DoctorAppointmentBookingSystem.model.Users;
 import com.backend.DoctorAppointmentBookingSystem.response.AuthenticationResponse;
@@ -50,7 +51,15 @@ public class UserController {
        return  service.getAllActiveUsers();
   }
 
-
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody PasswordRequest passwordRequest) {
+        try {
+          //  service.resetPassword(passwordRequest.getPassword());
+            return ResponseEntity.ok("Password successfully reset.");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error resetting password.");
+        }
+    }
 
 
 }

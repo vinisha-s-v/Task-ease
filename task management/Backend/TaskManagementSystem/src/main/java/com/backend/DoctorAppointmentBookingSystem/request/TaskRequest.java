@@ -25,4 +25,7 @@ public class TaskRequest {
 
     @Enumerated(EnumType.STRING)
     private TASK_STATUS status;
+
+
+
 }

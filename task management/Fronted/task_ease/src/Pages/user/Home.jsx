@@ -43,7 +43,7 @@ const Home = () => {
 
 
   const{auth} = useContext(AuthContext);
-  console.log(auth.role,"vijay ");
+  // console.log(auth.role,"vijay ");
 
   
   return (

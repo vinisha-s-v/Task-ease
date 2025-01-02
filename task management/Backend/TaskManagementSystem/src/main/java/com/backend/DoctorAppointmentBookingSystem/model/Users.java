@@ -2,10 +2,7 @@ package com.backend.DoctorAppointmentBookingSystem.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.context.annotation.Bean;
 
 @Data
@@ -26,6 +23,8 @@ public class Users {
 
     private String email;
 
+    @Setter
+    @Getter
     private String password;
 
     @Enumerated(EnumType.STRING) //This tells JPA to store the value of the role field as a string in the database.
@@ -34,5 +33,6 @@ public class Users {
 
     @Column( nullable = false)
     private  boolean isDeleted =false; //soft delete flag
+
 
 }

@@ -1,6 +1,5 @@
 package com.backend.DoctorAppointmentBookingSystem.service;
 
-import com.backend.DoctorAppointmentBookingSystem.model.USER_ROLE;
 import com.backend.DoctorAppointmentBookingSystem.model.UserPrinciple;
 import com.backend.DoctorAppointmentBookingSystem.request.AuthenticationRequest;
 import com.backend.DoctorAppointmentBookingSystem.request.RegisterRequest;
@@ -8,12 +7,11 @@ import com.backend.DoctorAppointmentBookingSystem.model.Users;
 import com.backend.DoctorAppointmentBookingSystem.repository.UserRepo;
 import com.backend.DoctorAppointmentBookingSystem.response.AuthenticationResponse;
 
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -134,8 +132,16 @@ public class UserServiceImp implements UserService {
         return repo.findAllActiveUsers();
     }
 
-
-
+@Override
+    public void resetPassword(String newPassword) {
+        // Assuming you're using a password encoder
+        String encodedPassword = new BCryptPasswordEncoder().encode(newPassword);
+        // Retrieve user from the session or token, update their password
+        // For simplicity, using a hardcoded user ID or email
+        Optional<Users> user = repo.findByEmail("user@example.com"); // Replace with logic to find the user
+      // user.setPassword(encodedPassword);
+       // repo.save(user);
+    }
 }
 
 

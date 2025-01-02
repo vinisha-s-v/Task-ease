@@ -27,13 +27,16 @@ public class Tasks {
     private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
-    private  TASK_STATUS status;
+    private  TASK_STATUS status = TASK_STATUS.ACTIVE;
 
     @ManyToOne
     private Users assignedUserId;
 
-    @Column(nullable = false)
-    private  boolean is_deleted = false;
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
+
+//    @Column(nullable = false)
+//    private  boolean is_Deleted = false;
 
 
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -47,4 +50,8 @@ public class Tasks {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private   LocalDateTime deadLine;
 
+    public void setDeleted(boolean isDeleted) {
+
+        this.isDeleted=isDeleted;
+    }
 }

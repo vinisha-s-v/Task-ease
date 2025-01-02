@@ -4,7 +4,7 @@ export const TASK_SIDEBAR_LINK=[
     {
         key:'profile',
         label:'Profile',
-        path: '/profile',
+        path: '/task/profile-user',
         icon:<HiOutlineUserCircle />
     },{
         key: "completedTasks",

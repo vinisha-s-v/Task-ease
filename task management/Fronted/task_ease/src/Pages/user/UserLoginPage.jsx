@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate,Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../Providers/AuthProvider';
-
+import bglogin from '../../assets/user/bglogin.jpg'
 
 const UserLoginPage = () => {
     const[email,setEmail]=useState('');
@@ -14,6 +14,7 @@ const UserLoginPage = () => {
 
         const handleSubmit = async(e)=>{
           e.preventDefault();
+          setError("");
         try{
             console.log(email,password);
             
@@ -30,7 +31,7 @@ const UserLoginPage = () => {
             if(response.status===200 && response.data.token){
               
                 localStorage.setItem("authToken",response.data.token)
-                navigate('/home/user');
+                navigate('/home');
               
             }
             else{
@@ -46,8 +47,12 @@ const UserLoginPage = () => {
     }
   return (
     <>
-      <div className='min-h-screen flex items-center bg-gray-100 justify-center'>
-        <div className='bg-white p-8 rounded-lg w-full max-w-md'>
+      <div className='min-h-screen flex items-center bg-gray-100 justify-center'
+       style={{backgroundImage:`url(${bglogin})`,
+       backgroundSize: 'cover',
+        backgroundPosition: 'center',}}
+      >
+        <div className='bg-white p-8 opacity-1 rounded-lg w-full max-w-md'>
             <h2 className='text-2xl font-bold text-center text-black-800'>Login</h2>
             <p className='text-red-500 text-center mb-4'>{error}</p>
             <form onSubmit={handleSubmit} className='mt-6 space-y-4'>
@@ -82,7 +87,17 @@ const UserLoginPage = () => {
               </div>
             </form>
             <div className='mt-4 text-center'>
-            <a href='#' className='text-indigo-600 hover:text-indigo-500'>Forgot your password?</a>
+            
+            <a href='#' className='text-indigo-600 hover:text-indigo-500' onClick={() => navigate('/reset-password')}>Forgot your password?</a>
+          </div>
+
+          <div className="mt-4 text-center">
+            <p className="text-gray-700">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-blue-600 hover:underline">
+                Register
+              </Link>
+            </p>
           </div>
 
         </div>

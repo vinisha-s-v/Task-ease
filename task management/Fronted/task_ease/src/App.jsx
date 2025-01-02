@@ -22,6 +22,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import PendingTask from "./Pages/user/PendingTask";
 import CompletedTask from "./Pages/user/CompletedTask";
+import ProfilePage from "./Pages/user/Profile";
+import ResetPasswordPage from "./Pages/user/ResetPasswordPage";
+import MainHome from "./Pages/user/MainHome";
+
+
 function App() {
   return (
     <AuthProvider>
@@ -42,12 +47,14 @@ function App() {
 
           {/* user start */}
            {/* Redirect the root path "/" to the login page */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-        
+          <Route path="/" element={<Navigate to="/main-home" replace />} />
+
+          
+        <Route path="/main-home" element={<MainHome/>}></Route>
 
           <Route path="/login" element={<UserLoginPage />}></Route>
 
-          <Route path="/home" element={<Home />}>
+          
             <Route path="user" element={<TaskLayout/>}>
            
             <Route index element={<Tasks />} />
@@ -55,7 +62,7 @@ function App() {
            
                 
             </Route>
-          </Route>
+         
          
 
           <Route path="/about" element={<About/>}/>
@@ -66,10 +73,12 @@ function App() {
               <Route path="update-task" element={<UpdateTaskForm />}></Route>
             </Route> */}
 
-
+<Route path="/home" element={<Home />}></Route>
 <Route path="/register" element={<Register/>}/> 
 <Route path="/task/pending-tasks" element={<PendingTask/>}/>
 <Route path="/task/completed-tasks" element={<CompletedTask/>}/>
+<Route path="/task/profile-user" element={<ProfilePage/>}/>
+<Route path="/reset-password" element={<ResetPasswordPage/>}/>
 
         </Routes>  
         

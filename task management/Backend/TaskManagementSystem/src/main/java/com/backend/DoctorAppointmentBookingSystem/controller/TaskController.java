@@ -49,7 +49,7 @@ public class TaskController {
     @GetMapping()
     public ResponseEntity<List<Tasks>> getAllTask (@RequestHeader("Authorization") String authHeader) throws Exception {
         Users user= userService.findUsernameByAuthorizationHeader(authHeader);
-        List<Tasks> response =taskService.getAllTask();
+        List<Tasks> response =taskService.getAllActiveTasks(user);
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
@@ -64,14 +64,8 @@ public class TaskController {
 
     }
 
-    @PutMapping("/{id}")
-    public  ResponseEntity <Tasks>UpdateTask(@PathVariable Long id,@RequestHeader("Authorization") String authHeader,@RequestBody TaskRequest request) throws Exception {
-        Users user=userService.findUsernameByAuthorizationHeader(authHeader);
-        Tasks updateTask= taskService.UpdateTask(id,request);
-         return  new ResponseEntity<>(updateTask,HttpStatus.OK); 
 
 
-    }
 
     @GetMapping("/{status}")
     public ResponseEntity<List<Tasks>> getTasksByStatus(@PathVariable TASK_STATUS status,@RequestHeader("Authorization") String authHeader)throws  Exception{
@@ -80,28 +74,32 @@ public class TaskController {
         return new ResponseEntity<>(tasks,HttpStatus.OK);
 
     }
-//    @PostMapping("/schedule/{id}")
-//    public  ResponseEntity<Tasks> scheduleTask(@PathVariable Long id,
-//                                               @RequestParam Date scheduleTime,
-//                                               @RequestHeader("Authorization") String authHeader) throws Exception{
-//
-//        System.out.println(scheduleTime);
-//        Users user = userService.findUsernameByAuthorizationHeader(authHeader);
-//
-//        Tasks scheduledTask =taskService.scheduledTask(id,scheduleTime);
-//        return ResponseEntity.ok(scheduledTask);
-//    }
 
-//    @GetMapping("/search")
-//    public List<Tasks> searchTasks(
-//            @RequestParam(required = false) String title,
-//            @RequestParam(required = false) TASK_STATUS status,
-//            @RequestParam(required = false) Long assignedUserId,
-//            @RequestParam(required = false) LocalDateTime startTime,
-//            @RequestParam(required = false) LocalDateTime endTime
-//    ) {
-//        return taskRepo.searchTasks(title, status, assignedUserId, startTime, endTime);
-//    }
+
+
+@PutMapping("/restore/{id}")
+public ResponseEntity<Tasks> restoreTask(@PathVariable Long id, @RequestHeader("Authorization") String authHeader) throws Exception {
+    Users user = userService.findUsernameByAuthorizationHeader(authHeader);
+
+    Tasks restoredTask = taskService.restoreTask(id);
+    return new ResponseEntity<>(restoredTask, HttpStatus.OK);
+}
+
+
+
+    @PutMapping("/complete/{id}")
+    public ResponseEntity<Void> markTaskAsComplete(@PathVariable Long id, @RequestHeader("Authorization") String authHeader) throws Exception {
+
+        Users user = userService.findUsernameByAuthorizationHeader(authHeader);
+
+        taskService.markTaskAsComplete(id, user);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
+
 
 
 }

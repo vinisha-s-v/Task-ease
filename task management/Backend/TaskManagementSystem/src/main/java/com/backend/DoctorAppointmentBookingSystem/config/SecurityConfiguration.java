@@ -34,7 +34,7 @@ public class SecurityConfiguration {
 
     @Autowired
     private JwtFilter jwtFilter;
-    
+
     @Bean
     public  SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/api/user/**").hasAnyAuthority("ADMIN","USER")
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/task/complete/**").hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
 
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
