@@ -204,7 +204,7 @@ toast.info(
           Add User
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 overflow-y-auto max-h-[500px]">
         {users.map(
           (user) =>
             user.role !== "ADMIN" && (
