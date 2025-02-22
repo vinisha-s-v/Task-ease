@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="acd13896-3cb6-4a6d-8666-fb9c90025e59" name="Changes" comment="" />
+    <list default="true" id="acd13896-3cb6-4a6d-8666-fb9c90025e59" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/model/Tasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/model/Tasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/repository/TaskRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/repository/TaskRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/service/TaskService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/service/TaskServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/java/com/backend/DoctorAppointmentBookingSystem/service/TaskServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManagementSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManagementSystem/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/jestt.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/CreateTaskForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/CreateTaskForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/UpdateTaskForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Components/UpdateTaskForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminLoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminLoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminUserManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/admin/AdminUserManagement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/CompletedTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/CompletedTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Home.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/MainHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/MainHome.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/PendingTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/PendingTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/ProfileUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/ProfileUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Tasks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Tasks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/Tasks.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/UserLoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/Pages/user/UserLoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/bable.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/bable.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/lib/admin/constants/navigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/lib/admin/constants/navigation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/lib/user/constants/navigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/lib/user/constants/navigation.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Fronted/task_ease/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Fronted/task_ease/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

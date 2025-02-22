@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import AdminLoginPage from "./Pages/admin/AdminLoginPage";
+import React from "react";
 
 import { AuthProvider } from "./Providers/AuthProvider";
 import UpdateUserForm from "./Components/UpdateUserForm";
@@ -8,7 +9,7 @@ import Home from "./Pages/user/Home";
 import Tasks from "./Pages/user/Tasks";
 import UserLoginPage from "./Pages/user/UserLoginPage";
 import UpdateTaskForm from "./Components/UpdateTaskForm";
-import Layout from "./Components/admin/Shared/Layout";
+import Layout from "./Components/admin/shared/Layout";
 
 import Dashboard from "./Components/Dashboard";
 import TaskLayout from "./Components/user/shared/TaskLayout";
@@ -25,6 +26,9 @@ import CompletedTask from "./Pages/user/CompletedTask";
 import ProfilePage from "./Pages/user/Profile";
 import ResetPasswordPage from "./Pages/user/ResetPasswordPage";
 import MainHome from "./Pages/user/MainHome";
+import ServicePage from "./Pages/user/ServicePage";
+
+
 
 
 function App() {
@@ -66,6 +70,7 @@ function App() {
          
 
           <Route path="/about" element={<About/>}/>
+          <Route path="/service" element={<ServicePage/>}/>
 
 
           {/* <Route path="/user" element={<TaskLayout />}>
@@ -77,8 +82,11 @@ function App() {
 <Route path="/register" element={<Register/>}/> 
 <Route path="/task/pending-tasks" element={<PendingTask/>}/>
 <Route path="/task/completed-tasks" element={<CompletedTask/>}/>
-<Route path="/task/profile-user" element={<ProfilePage/>}/>
+<Route path="/profile-user" element={<ProfilePage/>}/>
 <Route path="/reset-password" element={<ResetPasswordPage/>}/>
+
+
+
 
         </Routes>  
         

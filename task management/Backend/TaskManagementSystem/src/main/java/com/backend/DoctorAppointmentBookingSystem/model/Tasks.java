@@ -30,6 +30,7 @@ public class Tasks {
     private  TASK_STATUS status = TASK_STATUS.ACTIVE;
 
     @ManyToOne
+    @JoinColumn(name="user_id")
     private Users assignedUserId;
 
     @Column(name = "is_deleted", nullable = false)
@@ -51,7 +52,9 @@ public class Tasks {
     private   LocalDateTime deadLine;
 
     public void setDeleted(boolean isDeleted) {
-
         this.isDeleted=isDeleted;
     }
+
+    @Column(nullable = false)
+    private boolean completed; // Ensure this field exists and is named correctly
 }

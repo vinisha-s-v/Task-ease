@@ -7,24 +7,21 @@ const CreateTaskForm = ({ token, onClose }) => {
   const [description, setDescription] = useState("");
   const [scheduleTime, setScheduleTime] = useState("");
   const [deadLine, setDeadLine] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
-    const token=localStorage.getItem('authToken');
-    console.log('Token:', token); 
-   
+    const token = localStorage.getItem("authToken");
+    console.log("Token:", token);
+
     try {
-      
       const response = await axios.post(
         "http://localhost:8080/api/users/tasks/create",
         {
           title,
           description,
-          scheduleTime,
-          deadLine
-
+          // scheduleTime,
+          deadLine,
         },
         {
           headers: {
@@ -39,16 +36,14 @@ const CreateTaskForm = ({ token, onClose }) => {
 
       const { createdAt } = response.data; // Extract createdAt from the response
       console.log("Task Created At:", createdAt);
+      navigate("/user");
       onClose();
-      navigate('/home/user');
+
       // closeForm();
-    
     } catch (err) {
       console.log(err);
     }
     // console.log(tasks);
- 
- 
   };
 
   return (
@@ -58,7 +53,6 @@ const CreateTaskForm = ({ token, onClose }) => {
         <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">Title</label>
           <input
-
             type="text"
             placeholder="Enter title"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -73,9 +67,11 @@ const CreateTaskForm = ({ token, onClose }) => {
           </label>
 
           <textarea
-           className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight "
-          onChange={(e) => setDescription(e.target.value)}
-          value={description} />
+            className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight "
+            placeholder="Enter Description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
         </div>
 
         {/* <div className="mb-4">
@@ -83,27 +79,30 @@ const CreateTaskForm = ({ token, onClose }) => {
             Scheduled Time
           </label>
           <input
-            type="datetime-local"
+            type="text"
+            placeholder="Deadline"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={scheduleTime}
-            onChange={(e) => setScheduleTime(e.target.value)}
+            value={title}
+            onChange={(e) => setDeadLine(e.target.value)}
           />
         </div> */}
 
         <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">Deadline</label>
+          <label className="block text-gray-700 font-medium mb-2">
+            Deadline
+          </label>
           <input
             type="datetime-local"
+            placeholder="Deadline"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={deadLine}
             onChange={(e) => setDeadLine(e.target.value)}
+            min={new Date().toISOString().slice(0, 16)} // Prevent past dates
           />
         </div>
         <button
           type="submit"
-         
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          
         >
           Submit
         </button>

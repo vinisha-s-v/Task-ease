@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const CompletedTask = () => {
   const token = localStorage.getItem("authToken");
   const [completedTasks, setCompletedTasks] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     fetchCompletedTasks();
   }, []);
 
   const fetchCompletedTasks = async () => {
+  
     try {
       const response = await axios.get(
         "http://localhost:8080/api/users/tasks/completed",
@@ -27,9 +31,15 @@ const CompletedTask = () => {
   };
 
   return (
-    <div className="relative h-screen w-full bg-green-50">
+    <div className="relative h-screen w-full bg-blue-100">
+
+      <button  className="absolute top-4 left-4 p-2 bg-blue-600 text-white rounded-full shadow-md"
+      onClick={() => navigate("/user")}>
+        <AiOutlineArrowLeft size={24}/>
+        
+      </button>
       <div className="w-full py-4">
-        <h1 className="text-2xl font-bold flex justify-center text-green-800">
+        <h1 className="text-2xl font-bold flex justify-center text-blue-800">
           Completed Tasks
         </h1>
       </div>
@@ -43,7 +53,7 @@ const CompletedTask = () => {
               >
                 <h3 className="text-xl font-semibold mb-2">{task.title}</h3>
                 <p className="text-gray-600 mb-1">{task.description}</p>
-                <p className="text-green-600 mb-1">
+                <p className="text-blue-600 mb-1">
                   <strong>Scheduled:</strong>{" "}
                   {new Date(task.scheduleTime).toLocaleString()}
                 </p>

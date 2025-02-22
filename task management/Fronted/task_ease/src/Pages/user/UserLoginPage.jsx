@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Navigate,Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../Providers/AuthProvider';
-import bglogin from '../../assets/user/bglogin.jpg'
-
+ import bglogin from '../../assets/user/signup.avif'
+import { AiOutlineArrowLeft } from "react-icons/ai";
 const UserLoginPage = () => {
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('')
@@ -21,14 +21,18 @@ const UserLoginPage = () => {
             const response=await axios.post("http://localhost:8080/auth/authenticate",{
                 email,password
             })
-            setAuth({
+
+
+            if(response.status===200 && response.data.token){
+              setAuth({
                 token:response.data.token,
                 email: response.data.email,
                  role: response.data.role
 
             })
 
-            if(response.status===200 && response.data.token){
+            console.log(response.data.token,"vijay shushu");
+            
               
                 localStorage.setItem("authToken",response.data.token)
                 navigate('/home');
@@ -45,6 +49,9 @@ const UserLoginPage = () => {
              
         }     
     }
+    // const handleGoBack =()=>{
+    //   navigate("/main-home")
+    // }
   return (
     <>
       <div className='min-h-screen flex items-center bg-gray-100 justify-center'
@@ -99,6 +106,11 @@ const UserLoginPage = () => {
               </Link>
             </p>
           </div>
+
+          <button
+        onClick={() => navigate("/main-home")} 
+        className="absolute top-4 left-4 p-2 bg-blue-600 text-white rounded-full shadow-md"
+      >  <AiOutlineArrowLeft size={24} /> </button>
 
         </div>
 

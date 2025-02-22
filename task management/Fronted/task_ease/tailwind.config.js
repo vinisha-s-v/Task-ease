@@ -6,6 +6,11 @@ export default {
   ], 
   theme: {
     extend: {
+      sm: '640px',
+      md: '768px', // Default medium
+      custom: '807px', // Custom breakpoint for your case
+      lg: '1024px',
+      xl: '1280px',
       colors: {
         gold: '#D4AF37', // Customize this value for your desired gold shade
       },

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import BackgroundImage from '../../assets/user/backimg.avif'
+import backimg from '../../assets/user/signup.avif'
 import { MdPassword } from 'react-icons/md';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
+import { AiOutlineArrowLeft } from "react-icons/ai";
 const Register = () => {
 
    
@@ -49,13 +51,16 @@ const Register = () => {
             setError(error.response?.data?.message || 'Registration failed');
           }
         };
+       
+        
       
 
         
     
   return (
     <div className='min-h-screen bg-cover bg-center flex flex-col justify-center items-center'
-   style={{backgroundImage:`url(${BackgroundImage}')`}}
+   style={{backgroundImage:`url(${BackgroundImage})`}}
+  //  style={{backgroundImage:`url(${backimg})`}}
     >
 
         <div className='bg-white bg-opacity-90 py-8 px-6 shadow-lg rounded-lg sm:max-w-md w-full' >
@@ -150,8 +155,21 @@ const Register = () => {
             >
               Login here
             </button>
+
+
           </p>
+
         </div>
+
+       
+       
+
+<button
+        onClick={() => navigate("/login")} // Navigate back to the previous page
+        className="absolute top-4 left-4 p-2 bg-blue-600 text-white rounded-full shadow-md"
+      >
+        <AiOutlineArrowLeft size={24} /> {/* Use the icon here */}
+      </button>
         </div>
       
     </div>

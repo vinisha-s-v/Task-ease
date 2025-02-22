@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -63,19 +64,31 @@ public class TaskController {
             return new ResponseEntity<>(HttpStatus.OK);
 
     }
-
-
-
-
-    @GetMapping("/{status}")
-    public ResponseEntity<List<Tasks>> getTasksByStatus(@PathVariable TASK_STATUS status,@RequestHeader("Authorization") String authHeader)throws  Exception{
+    @GetMapping("/user-tasks")
+public ResponseEntity<List<Tasks>>getTasksByUser(@RequestHeader ("Authorization")String authHeader) throws Exception {
         Users user=userService.findUsernameByAuthorizationHeader(authHeader);
-        List<Tasks> tasks = taskService.getTasksByStatus(status);
-        return new ResponseEntity<>(tasks,HttpStatus.OK);
+        List<Tasks> userTasks = taskService.getAllTaskByUser(user);
+        return  new ResponseEntity<>(userTasks,HttpStatus.OK);
+}
+
+
+
+//    @GetMapping("/completed")
+//    public ResponseEntity<List<Tasks>> getTasksByStatus(@RequestHeader("Authorization") String authHeader)throws  Exception{
+//        Users user=userService.findUsernameByAuthorizationHeader(authHeader);
+//        List<Tasks> tasks = taskService.getTasksByStatus(TASK_STATUS.COMPLETE);
+//        return new ResponseEntity<>(tasks,HttpStatus.OK);
+//
+//    }
+
+    @PutMapping("/{id}")
+    public  ResponseEntity <Tasks>UpdateTask(@PathVariable Long id,@RequestHeader("Authorization") String authHeader,@RequestBody TaskRequest request) throws Exception {
+        Users user=userService.findUsernameByAuthorizationHeader(authHeader);
+        Tasks updateTask= taskService.UpdateTask(id,request,authHeader);
+        return  new ResponseEntity<>(updateTask,HttpStatus.OK);
+
 
     }
-
-
 
 @PutMapping("/restore/{id}")
 public ResponseEntity<Tasks> restoreTask(@PathVariable Long id, @RequestHeader("Authorization") String authHeader) throws Exception {
@@ -87,14 +100,22 @@ public ResponseEntity<Tasks> restoreTask(@PathVariable Long id, @RequestHeader("
 
 
 
-    @PutMapping("/complete/{id}")
-    public ResponseEntity<Void> markTaskAsComplete(@PathVariable Long id, @RequestHeader("Authorization") String authHeader) throws Exception {
+    @PutMapping("/{taskId}/mark-completed")
+    public ResponseEntity<Tasks> markTaskAsComplete(@PathVariable Long taskId, @RequestHeader("Authorization") String authHeader) throws Exception {
 
         Users user = userService.findUsernameByAuthorizationHeader(authHeader);
 
-        taskService.markTaskAsComplete(id, user);
-        return ResponseEntity.ok().build();
+        Tasks updatedTask = taskService.markTaskAsComplete(taskId, user);
+        return ResponseEntity.ok(updatedTask);
     }
+
+    @GetMapping("/completed")
+    public List<Tasks> getCompletedTasksByUser(@RequestHeader("Authorization") String authHeader) throws Exception {
+        Users user = userService.findUsernameByAuthorizationHeader(authHeader);
+        return taskService.getCompletedTasksByUser(user);
+    }
+
+
 
 
 

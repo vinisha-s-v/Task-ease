@@ -12,7 +12,7 @@ const UpdateTaskForm = ({ task, onClose }) => {
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description);
-    setScheduleTime(task.scheduleTime);
+   // setScheduleTime(task.scheduleTime);
     setDeadLine(task.deadLine);
   }, [task]);
   
@@ -68,7 +68,7 @@ const UpdateTaskForm = ({ task, onClose }) => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">
             Scheduled Time
           </label>
@@ -78,7 +78,7 @@ const UpdateTaskForm = ({ task, onClose }) => {
             value={scheduleTime}
             onChange={(e) => setScheduleTime(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2">Deadline</label>
@@ -87,7 +87,9 @@ const UpdateTaskForm = ({ task, onClose }) => {
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={deadLine}
             onChange={(e) => setDeadLine(e.target.value)}
+            min={new Date().toISOString().slice(0,16)}
           />
+
         </div>
 
 

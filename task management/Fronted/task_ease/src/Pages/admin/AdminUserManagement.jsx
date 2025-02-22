@@ -3,6 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateTaskForm from "../../Components/CreateTaskForm";
 import { toast } from "react-toastify";
+import ConfirmationModal from "../../modal/confirmatonModal";
+
+
+
+
+
+
 
 const AdminDashBord = () => {
 
@@ -15,11 +22,25 @@ const AdminDashBord = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const[showToast,setShowToast]=useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
 
   //fetch user from backend
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const handleRemoveClick = (userId) => {
+    setSelectedUserId(userId); // Set the selected user ID
+    setShowModal(true); // Show the confirmation modal
+  };
+
+  const handleConfirmDelete = () => {
+    if (selectedUserId) {
+      deleteUser (selectedUserId); // Call deleteUser  with the selected user ID
+    }
+  };
 
 
   const handleClick = () =>{
@@ -32,7 +53,7 @@ const AdminDashBord = () => {
 
 
   const token = localStorage.getItem("authToken");
-  console.log(token, "vijay");
+  // console.log(token, "vijay");
 
   //method fetch users
   const fetchUsers = async () => {
@@ -52,6 +73,12 @@ const AdminDashBord = () => {
       console.error("Error fetching users:", error);
     }
   };
+
+  //sort users alphabetical by name
+
+  const sortedUsers =[...users].sort((a,b)=>
+    a.firstName.localeCompare(b.firstName)
+  )
 
 
 
@@ -89,12 +116,18 @@ toast.info(
 )
 
       setTimeout(()=>setShowToast(false),3000);
+      setShowModal(false);
+      setSelectedUserId(null);
 
     } catch (error) {
       console.error("Error deleting user:", error);
       // toast.error("Failed to delete user!");
      // toast.loading("loading");
     }
+     
+    
+    
+    
   };
 
   const restoreUser =async(user)=>{
@@ -180,64 +213,76 @@ toast.info(
   };
 
   return (
-    <div className="bg-black min-h-screen p-6 w-full">
+    <div className="bg-black min-h-screen p-4 sm:p-6 md:p-8 w-full">
       <div className="flex justify-end m-5">
         <input
           type="text"
           placeholder="Search..."
-          className="text-sm focus:outline-none h-10 w-[24rem] border border-gray-300 rounded-sm p-2"
+          className="text-sm focus:outline-none h-10 w-full sm:w-1/2 md:w-[24rem] border border-gray-300 rounded-sm p-2"
           value={searchTerm}
           onChange={handleSearchChange}
         />
       </div>
 
-      <div className="flex justify-between">
-        <h1 className="text-white text-3xl font-bold mb-6" onClick={handleClick}>USERS</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-white text-2xl sm:text-3xl font-bold" onClick={handleClick}>USERS</h1>
         <button
           type="button"
           onClick={handleAddUser}
-          className="text-gray-900 hover:text-white border border-gray-800
-         hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2
-         
-        dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          className="mt-3 sm:mt-0 text-white bg-gray-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5"
         >
           Add User
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 overflow-y-auto max-h-[500px]">
-        {users.map(
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-y-auto max-h-[500px]">        {sortedUsers.map(
           (user) =>
             user.role !== "ADMIN" && (
               <div
                 key={user.id}
-                className="bg-white p-4 rounded-lg shadow-lg border border-gold text-balck"
+                 className="bg-white p-4 rounded-lg shadow-lg border border-gold text-black"
               >
-                <h2 className="text-xl font-light mb-2 text-black">
+                <h2  className="text-lg sm:text-xl font-light mb-2 text-black">
                   {user.firstName} {user.lastName}
                 </h2>
                 <p className="mb-1">Email: {user.email}</p>
               
                 <p className="mb-1">Role: {user.role}</p>
 
-                <div className=" flex justify-between">
+                <div className=" flex justify-between mt-4">
                   <button
                     type="button"
                     onClick={() => handleUpdate(user)}
-                    className="text-gray-900 bg-white border
-                   border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4
-                    focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
-                     dark:bg-gray-800 dark:text-white dark:border-gray-600
-                      dark:hover:bg-gray-700 dark:hover:border-gold-600 dark:focus:ring-gold-700"
+                    className="
+                    text-gray-900 bg-white border border-gray-300 
+                    focus:outline-none hover:bg-gray-100 focus:ring-4 
+                    focus:ring-gray-100 font-medium rounded-lg 
+                    text-sm px-4 py-2 me-2 mb-2 
+                    sm:text-xs sm:px-2 sm:py-1 sm:me-1.5 sm:mb-1.5 
+                    md:text-sm md:px-3 md:py-1.5 md:me-2 md:mb-2 
+                    lg:text-base lg:px-4 lg:py-2 lg:me-3 lg:mb-2.5 
+                    dark:bg-gray-800 dark:text-white dark:border-gray-600 
+                    dark:hover:bg-gray-700 dark:hover:border-gold-600 
+                    dark:focus:ring-gold-700
+                  "
                   >
                     UPDATE
                   </button>
                   <button
                     type="button"
-                    onClick={() => deleteUser(user.id)}
-                    className="text-gray-900 bg-white border border-gray-300 focus:outline-none
-                  hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
-                   dark:bg-gray-800 dark:text-white dark:border-gray-600
-                    dark:hover:bg-gray-700 dark:hover:border-gold-600 dark:focus:ring-gold-700"
+                    onClick={() =>handleRemoveClick(user.id)}
+                    className="
+    text-gray-900 bg-white border border-gray-300 
+    focus:outline-none hover:bg-gray-100 focus:ring-4 
+    focus:ring-gray-100 font-medium rounded-lg 
+    text-sm px-4 py-2 me-2 mb-2 
+    sm:text-xs sm:px-2 sm:py-1 sm:me-1.5 sm:mb-1.5 
+    md:text-sm md:px-3 md:py-1.5 md:me-2 md:mb-2 
+    lg:text-base lg:px-4 lg:py-2 lg:me-3 lg:mb-2.5 
+    dark:bg-gray-800 dark:text-white dark:border-gray-600 
+    dark:hover:bg-gray-700 dark:hover:border-gold-600 
+    dark:focus:ring-gold-700
+  "
+                  
                   >
                     REMOVE
                   </button>
@@ -249,8 +294,19 @@ toast.info(
 
 
       {showToast && <Toast/>}
+         {/* Confirmation Modal */}
+         <ConfirmationModal
+         show={showModal}
+        onConfirm={handleConfirmDelete} // Call the confirm delete method
+        onCancel={() => setShowModal(false)} // Close the modal
+       />
+      
     </div>
+
+
   );
+ 
+  
 };
 
 export default AdminDashBord;

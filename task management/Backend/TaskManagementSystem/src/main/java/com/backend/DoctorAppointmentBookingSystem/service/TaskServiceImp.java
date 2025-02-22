@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,9 +87,9 @@ public class TaskServiceImp implements  TaskService {
         if (request.getDescription() != null) {
             task.setDescription(request.getDescription());
         }
-        if (request.getScheduleTime() != null) {
-            task.setScheduleTime(request.getScheduleTime());
-        }
+//        if (request.getScheduleTime() != null) {
+//            task.setScheduleTime(request.getScheduleTime());
+//        }
         if (request.getDeadLine() != null) {
             task.setDeadLine(request.getDeadLine());
         }
@@ -117,7 +116,7 @@ public class TaskServiceImp implements  TaskService {
 
     @Override
     public List<Tasks>   getAllTaskByUser(Users user) {
-        return  taskRepo.findByAssignedUserId(user);
+        return  taskRepo.findByAssignedUserIdAndIsDeletedFalse(user);
     }
 
 
@@ -172,19 +171,21 @@ public Tasks restoreTask(Long taskId) throws Exception {
             return ("Task not found");
         }
         }
-
-
-//    @Override
-//    public List<Tasks> getCompletedTasks(Users user) {
-//        return taskRepo.findByStatusAndAssignedUserId(TASK_STATUS.COMPLETE, user);
-//    }
 @Override
-public void markTaskAsComplete(Long taskId,Users user) {
+public List<Tasks> getCompletedTasksByUser(Users user) {
+    return taskRepo.findCompletedTasksByUser(user);
+}
+
+
+
+
+    @Override
+public Tasks markTaskAsComplete(Long taskId,Users user) {
     Optional<Tasks> taskOptional = taskRepo.findById(taskId);
     if (taskOptional.isPresent()) {
         Tasks task = taskOptional.get();
-        task.setStatus(TASK_STATUS.COMPLETE);
-        taskRepo.save(task);
+        task.setCompleted(true);
+        return taskRepo.save(task);
     } else {
         throw new RuntimeException("Task not found with ID: " + taskId);
     }

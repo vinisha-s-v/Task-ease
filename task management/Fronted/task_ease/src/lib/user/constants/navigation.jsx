@@ -1,4 +1,6 @@
 import { HiOutlineUserCircle } from "react-icons/hi";
+import React from "react";
+
 import { AiOutlineCheckCircle, AiOutlineClockCircle } from "react-icons/ai";
 export const TASK_SIDEBAR_LINK=[
     {
@@ -12,10 +14,10 @@ export const TASK_SIDEBAR_LINK=[
         path: "/task/completed-tasks",
         icon: <AiOutlineCheckCircle />,
       },
-      {
-        key: "pendingTasks",
-        label: "Pending Tasks",
-        path: "/task/pending-tasks",
-        icon: <AiOutlineClockCircle />,
-      },
+      // {
+      //   key: "pendingTasks",
+      //   label: "Pending Tasks",
+      //   path: "/task/pending-tasks",
+      //   icon: <AiOutlineClockCircle />,
+      // },
 ]

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUser, FaEdit, FaEnvelope } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { IoIosHelpCircle } from "react-icons/io";
@@ -8,8 +8,17 @@ import { useNavigate } from 'react-router-dom';
 const Profile = () => {
 
     const [menuActive, setMenuActive] = useState(false);
+    const [userName,setUserName]=useState('')
 
     const navigate =useNavigate();
+
+
+    // useEffect(()=>{
+    //   const storedUserName = localStorage.getItem('userName')// Assuming 'userName' is stored in localStorage
+    //   if(storedUserName){
+    //     storedUserName(storedUserName);
+    //   }
+    // },[])
 
   const menuToggle = () => {
     setMenuActive(!menuActive);
@@ -20,11 +29,14 @@ const Profile = () => {
 
     localStorage.clear(); // Clear user datta from localStroge
 
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
      
     setMenuActive(false);
 
     navigate('/login');
+  }
+  const handleProfile =()=>{
+    navigate("/profile-user")
   }
 
   return (
@@ -44,16 +56,16 @@ const Profile = () => {
             menuActive ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          <div className="text-center p-4 border-b">
-            <h3 className="font-semibold text-gray-600">Someone Famous</h3>
-            <span className="text-sm text-gray-400">Website Designer</span>
-          </div>
+          {/* <div className="text-center p-4 border-b">
+            <h3 className="font-semibold text-gray-600">{userName || 'Guest'}</h3>
+            <span className="text-sm text-gray-400"></span>
+          </div> */}
           <ul className="p-4">
-            <MenuItem icon={<FaUser />} label="My Profile" />
-            <MenuItem icon={<FaEdit />} label="Edit Profile" />
-            <MenuItem icon={<FaEnvelope />} label="Inbox" />
-            <MenuItem icon={<IoIosSettings />} label="Settings" />
-            <MenuItem icon={<IoIosHelpCircle />} label="Help" />
+            {/* <MenuItem icon={<FaUser />  } label="My Profile"onClick={handleProfile} />
+            <MenuItem icon={<FaEdit />} label="Edit Profile"   /> */}
+            {/* <MenuItem icon={<FaEnvelope />} label="Inbox" /> */}
+            {/* <MenuItem icon={<IoIosSettings />} label="Settings" /> */}
+            {/* <MenuItem icon={<IoIosHelpCircle />} label="Help" /> */}
             <MenuItem icon={<MdLogout />} label="Logout"  onClick={handleLogout}/>
           </ul>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import bgImg from '../../assets/admin/bg.avif';
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -11,6 +13,7 @@ function AdminLoginPage() {
 
   const navigate = useNavigate();
   // const [auth,setAuth]=useState();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,18 +39,25 @@ function AdminLoginPage() {
       if (response.status === 200 && response.data.token) {
         localStorage.setItem("authToken", response.data.token); //save the authtoken in localstorage
 
-        navigate("/admin/dashboard");
+        navigate("/admin/users");
       } else {
         setError("Invalid username or password");
       }
     } catch (error) {
       setError("Invalid username or password");
     }
+
+   
   };
+
+  // const handleGoBack =()=>{
+  //   navigate("/main-home")
+  // }
+
 
   return (
     <>
-      <div className="min-h-screen flex items-center bg-greay-100 justify-center">
+      <div className="min-h-screen flex items-center bg-greay-100 justify-center" style={{backgroundImage:`url(${bgImg})`}}>
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold text-center text-black-800">
             Admin Login page
@@ -57,6 +67,7 @@ function AdminLoginPage() {
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* email div */}
             <div>
+              
               <label className="block text-sm font-medium text-gray-700">
                 Email
               </label>
@@ -99,6 +110,14 @@ function AdminLoginPage() {
               Forgot your password
             </a>
           </div>
+          <button
+        onClick={() => navigate("/main-home")} 
+        className="absolute top-4 left-4 p-2 bg-purple-600 text-white rounded-full shadow-md"
+      >
+        <AiOutlineArrowLeft size={24} /> 
+        
+      </button>
+
         </div>
       </div>
     </>

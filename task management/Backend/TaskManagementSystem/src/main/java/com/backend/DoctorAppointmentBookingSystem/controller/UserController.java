@@ -35,11 +35,14 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate (@RequestBody AuthenticationRequest request) throws Exception {
-        AuthenticationResponse authenticationResponse = service.authenticate(request);
-
-        return  new ResponseEntity<>(authenticationResponse,HttpStatus.OK);
-
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) throws Exception {
+        try {
+            AuthenticationResponse authenticationResponse = service.authenticate(request);
+            return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
     @GetMapping("/admin")
     public  ResponseEntity<String> adminpage(){

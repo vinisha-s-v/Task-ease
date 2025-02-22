@@ -34,7 +34,9 @@ public interface TaskService {
 
     List<Tasks> getAllActiveTasks(Users user);
 
-    void markTaskAsComplete(Long id,Users user);
+    List<Tasks> getCompletedTasksByUser(Users users);
+
+    Tasks markTaskAsComplete(Long id, Users user);
     // List<Tasks> getCompletedTasks(Users user);
 
 //    Tasks scheduledTask(Long id, Date scheduleTime) throws Exception;
