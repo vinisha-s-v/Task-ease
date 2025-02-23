@@ -7,6 +7,7 @@ import com.backend.DoctorAppointmentBookingSystem.model.Users;
 import com.backend.DoctorAppointmentBookingSystem.repository.UserRepo;
 import com.backend.DoctorAppointmentBookingSystem.response.AuthenticationResponse;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -127,9 +128,9 @@ public class UserServiceImp implements UserService {
     }
 
 
-
+@Override
     public List<Users>getAllActiveUsers(){
-        return repo.findAllActiveUsers();
+        return repo.findAllActiveUsers(true);
     }
 
 @Override
@@ -141,7 +142,14 @@ public class UserServiceImp implements UserService {
         Optional<Users> user = repo.findByEmail("user@example.com"); // Replace with logic to find the user
       // user.setPassword(encodedPassword);
        // repo.save(user);
-    }
+
+
 }
+
+
+
+
+    }
+
 
 
