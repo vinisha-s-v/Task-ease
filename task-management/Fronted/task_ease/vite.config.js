@@ -13,4 +13,13 @@ export default defineConfig({
     isolate: true,  // Run tests in isolation
     include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'], // Specify test files pattern
   },
+  build: {
+    outDir: 'dist', // Output to dist/
+  },
+  server: {
+    port: 3000, // Ensure it's running on the correct port
+  },
+  preview: {
+    port: 4173, // Render uses this for preview
+  },
 });
