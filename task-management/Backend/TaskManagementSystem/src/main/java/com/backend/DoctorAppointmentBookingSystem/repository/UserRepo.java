@@ -23,7 +23,7 @@ public interface UserRepo  extends JpaRepository<Users,Long> {
 
 
     @Query("SELECT u FROM Users u WHERE u.isDeleted = false")
-    List<Users> findAllActiveUsers(boolean b);
+    List<Users> findAllActiveUsers();
 
 
     @Modifying
@@ -37,5 +37,5 @@ public interface UserRepo  extends JpaRepository<Users,Long> {
     @Query("UPDATE Users u Set u.isDeleted =false WHERE u.id = :id")
     void  restoreUser(@Param("id") Long id);
 
-    List<Users> findByActive(boolean b);
+
 }

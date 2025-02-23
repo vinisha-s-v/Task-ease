@@ -130,7 +130,7 @@ public class UserServiceImp implements UserService {
 
 @Override
     public List<Users>getAllActiveUsers(){
-        return repo.findAllActiveUsers(true);
+        return repo.findAllActiveUsers();
     }
 
 @Override
