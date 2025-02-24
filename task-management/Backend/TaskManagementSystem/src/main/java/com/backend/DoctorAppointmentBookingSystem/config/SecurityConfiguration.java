@@ -58,7 +58,8 @@ public class SecurityConfiguration {
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:30445",   // First allowed origin
                 "http://localhost:5173",   // Second allowed origin
-                "https://taskmanager-c8385.web.app/"
+                "https://taskmanager-c8385.web.app/",
+                "https://task-ease-frontend.onrender.com"
         ));
 
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
