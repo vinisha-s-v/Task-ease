@@ -17,11 +17,14 @@ spec:
           image: vinishasvijayakumar/taskmanagementsystem:latest
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres:5432/hospital_system
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: postgres
+              value: hospital_system
             - name: SPRING_DATASOURCE_PASSWORD
-              value: vinisha@97
+              value: RklPD9dyENasx0JVbJWjWl8zEzzgPfV3
           ports:
             - containerPort: 8080
 
@@ -31,8 +34,10 @@ kind: Service
 metadata:
   name: backend
 spec:
+  type: NodePort  # Change to LoadBalancer for cloud deployment
   ports:
     - port: 8080
       targetPort: 8080
+      nodePort: 30007  # Only for NodePort
   selector:
     app: backend
