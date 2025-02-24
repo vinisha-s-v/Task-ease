@@ -22,22 +22,8 @@ spec:
                   name: postgres-secret
                   key: SPRING_DATASOURCE_URL
             - name: SPRING_DATASOURCE_USERNAME
-              value: hospital_system
+              value: postgres  # ✅ Updated username
             - name: SPRING_DATASOURCE_PASSWORD
-              value: RklPD9dyENasx0JVbJWjWl8zEzzgPfV3
+              value: vinisha@97  # ✅ Updated password
           ports:
             - containerPort: 8080
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-spec:
-  type: NodePort  # Change to LoadBalancer for cloud deployment
-  ports:
-    - port: 8080
-      targetPort: 8080
-      nodePort: 30007  # Only for NodePort
-  selector:
-    app: backend
