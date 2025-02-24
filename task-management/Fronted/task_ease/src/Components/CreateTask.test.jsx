@@ -38,9 +38,13 @@ describe("CreateTaskForm", () => {
     fireEvent.click(screen.getByText("Submit"));
 
     // Wait for the Axios request
+    const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://task-ease-oh5d.onrender.com"
+    : "http://localhost:8080";
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        "https://task-ease-oh5d.onrender.com/api/users/tasks/create",
+        `${API_BASE_URL}/api/users/tasks/create`,
         {
           title: "Test Task",
           description: "This is a test task description",
