@@ -79,7 +79,7 @@ const Tasks = () => {
     if (!taskToDelete) return;
 
     try {
-        await axios.delete(`http://localhost:8080/api/users/tasks/${taskToDelete}`, {
+        await axios.delete(`https://task-ease-oh5d.onrender.com/api/users/tasks/${taskToDelete}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const Tasks = () => {
   const restoreTask = async (task) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/users/tasks/create",
+        "https://task-ease-oh5d.onrender.com/api/users/tasks/create",
         {
           title: task.title,
           description: task.description,
@@ -144,7 +144,7 @@ const Tasks = () => {
     console.log("Task ID:", taskId); 
     try{
       const token = localStorage.getItem('authToken'); 
-      const response = await axios.put(`http://localhost:8080/api/users/tasks/${taskId}/mark-completed`, {}, {
+      const response = await axios.put(`https://task-ease-oh5d.onrender.com/api/users/tasks/${taskId}/mark-completed`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

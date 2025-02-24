@@ -39,7 +39,7 @@ const Register = () => {
           // }
            navigate("/login")
           try {
-            const response = await axios.post('http://localhost:8080/auth/register', {
+            const response = await axios.post('https://task-ease-oh5d.onrender.com/auth/register', {
               firstName: formData.firstName,
               lastName: formData.lastName,
               email: formData.email,

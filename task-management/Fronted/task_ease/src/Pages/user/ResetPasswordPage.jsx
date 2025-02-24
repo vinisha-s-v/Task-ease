@@ -23,7 +23,7 @@ const ResetPasswordPage = () => {
 
     try {
       // Replace with the appropriate API endpoint and pass the new password
-      const response = await axios.post('http://localhost:8080/auth/reset-password', {
+      const response = await axios.post('https://task-ease-oh5d.onrender.com/auth/reset-password', {
         password: newPassword
       });
 

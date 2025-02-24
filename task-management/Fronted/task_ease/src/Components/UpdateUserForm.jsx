@@ -55,7 +55,7 @@ const UpdateUserForm = () => {
     const token=localStorage.getItem('authToken');
     const id=user ?.id
     try{
-      const response= await axios.put(`http://localhost:8080/api/admin/users/${user.id}`,saveUpdatedUser,{
+      const response= await axios.put(`https://task-ease-oh5d.onrender.com/api/admin/users/${user.id}`,saveUpdatedUser,{
       headers : {
         'Authorization': `Bearer ${token}`,
         'Content-Type' :  'application/json',

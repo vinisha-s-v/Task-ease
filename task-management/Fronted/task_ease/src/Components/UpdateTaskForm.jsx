@@ -24,7 +24,7 @@ const UpdateTaskForm = ({ task, onClose }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/users/tasks/${task.id}`,
+        `https://task-ease-oh5d.onrender.com/api/users/tasks/${task.id}`,
         { title, description,scheduleTime,deadLine },
         {
           headers: {

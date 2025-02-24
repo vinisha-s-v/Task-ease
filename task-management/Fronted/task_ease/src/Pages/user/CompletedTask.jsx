@@ -16,7 +16,7 @@ const CompletedTask = () => {
   
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/users/tasks/completed",
+        "https://task-ease-oh5d.onrender.com/api/users/tasks/completed",
         {
           headers: {
             Authorization: `Bearer ${token}`,

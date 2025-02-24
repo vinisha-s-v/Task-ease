@@ -22,7 +22,7 @@ function AdminLoginPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/authenticate",
+        "https://task-ease-oh5d.onrender.com/auth/authenticate",
         {
           email,
           password,

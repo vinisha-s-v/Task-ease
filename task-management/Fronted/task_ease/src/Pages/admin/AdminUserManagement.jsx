@@ -59,7 +59,7 @@ const AdminDashBord = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/admin/users",
+        "https://task-ease-oh5d.onrender.com/api/admin/users",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const AdminDashBord = () => {
     const token = localStorage.getItem("authToken");
     try {
       const deleteUser = users.find((user) => user.id === userId);
-    const response =  await axios.delete(`http://localhost:8080/api/admin/users/${userId}`, {
+    const response =  await axios.delete(`https://task-ease-oh5d.onrender.com/api/admin/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ toast.info(
   const restoreUser =async(user)=>{
     const token =localStorage.getItem("authToken");
     try{
-      const response = await axios.put(`http://localhost:8080/api/admin/users/restore/${user.id}`,
+      const response = await axios.put(`https://task-ease-oh5d.onrender.com/api/admin/users/restore/${user.id}`,
         user,{
           headers:{
             Authorization:`Bearer ${token}`,
@@ -166,7 +166,7 @@ toast.info(
   const userSerchManagementAdmin = async (token, keyword) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/admin/users/search?keyword=${keyword}`,
+        `https://task-ease-oh5d.onrender.com/api/admin/users/search?keyword=${keyword}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -196,7 +196,7 @@ toast.info(
       try {
         // Call search endpoint with the keyword
         const response = await axios.get(
-          `http://localhost:8080/api/admin/users/search?keyword=${keyword}`,
+          `https://task-ease-oh5d.onrender.com/api/admin/users/search?keyword=${keyword}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

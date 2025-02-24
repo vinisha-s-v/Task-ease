@@ -24,7 +24,7 @@ describe("Tasks Component", () => {
   });
 
   test("renders the Tasks component with no tasks initially", async () => {
-    mock.onGet("http://localhost:8080/api/users/tasks/user-tasks").reply(200, []);
+    mock.onGet("https://task-ease-oh5d.onrender.com/api/users/tasks/user-tasks").reply(200, []);
 
     render(
       <Router>
@@ -56,7 +56,7 @@ describe("Tasks Component", () => {
       },
     ];
 
-    mock.onGet("http://localhost:8080/api/users/tasks/user-tasks").reply(200, tasks);
+    mock.onGet("https://task-ease-oh5d.onrender.com/api/users/tasks/user-tasks").reply(200, tasks);
 
     render(
       <Router>

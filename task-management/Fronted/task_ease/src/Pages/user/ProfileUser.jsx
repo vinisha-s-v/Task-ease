@@ -13,7 +13,7 @@ const ProfileUser = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/users/profile", {
+      const response = await axios.get("https://task-ease-oh5d.onrender.com/api/users/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +31,7 @@ const ProfileUser = () => {
 
   const saveProfile = async (userId) => {
     try {
-      const response = await axios.put(`http://localhost:8080/api/admin/users/${userId}`, formData, {
+      const response = await axios.put(`https://task-ease-oh5d.onrender.com/api/admin/users/${userId}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
