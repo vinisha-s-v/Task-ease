@@ -50,7 +50,7 @@ const Tasks = () => {
     
     try {
       const response = await axios.get(
-       "https://task-ease-oh5d.onrender.com/api/tasks",
+       "https://task-ease-oh5d.onrender.com/api/users/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
