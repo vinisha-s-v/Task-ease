@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CreateTaskForm = ({ token, onClose }) => {
+const CreateTaskForm = ({ token, onClose,fetchTasks }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [scheduleTime, setScheduleTime] = useState("");
+  // const [scheduleTime, setScheduleTime] = useState("");
   const [deadLine, setDeadLine] = useState("");
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ const CreateTaskForm = ({ token, onClose }) => {
 
       const { createdAt } = response.data; // Extract createdAt from the response
       console.log("Task Created At:", createdAt);
+      fetchTasks();
       navigate("/user");
       onClose();
 
