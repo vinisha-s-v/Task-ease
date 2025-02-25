@@ -47,7 +47,7 @@ const Tasks = () => {
 
 
   const fetchTasks = async () => {
-    
+    console.log("Fetching tasks...");
     try {
       const response = await axios.get(
        "https://task-ease-oh5d.onrender.com/api/users/tasks",
