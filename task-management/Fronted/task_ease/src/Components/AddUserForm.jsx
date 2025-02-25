@@ -25,7 +25,7 @@ const AddUserForm = () => {
     const token = localStorage.getItem("authToken");
     try {
       const response = await axios.post(
-        "https://task-ease-oh5d.onrender.com/admin/users",
+        "https://task-ease-oh5d.onrender.com/api/admin/users",
         adduser,
         {
           headers: {
