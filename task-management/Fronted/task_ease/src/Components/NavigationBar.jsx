@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Profile from "../Pages/user/Profile";
 
@@ -7,12 +6,14 @@ const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-300 border-gray-200 py-2">
+    <nav className="bg-blue-300 py-2 fixed w-full top-0 z-50 shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        {/* Profile Section (Right Side) */}
-        <div className="flex md:order-2 space-x-3 md:space-x-0">
+        {/* Logo */}
+        <div className="text-lg font-semibold text-white">MyApp</div>
+
+        {/* Profile Icon - Always on Right */}
+        <div className="md:order-2 flex items-center space-x-3">
           <Profile />
-          {/* Menu Toggle Button (Only Visible on Mobile) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             type="button"
@@ -39,14 +40,14 @@ const NavigationBar = () => {
           </button>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation Menu */}
         <div
-          className={`absolute top-16 left-0 w-full bg-blue-300 p-4 shadow-md rounded-md md:static md:w-auto md:p-0 md:bg-transparent md:shadow-none md:flex ${
+          className={`absolute top-14 left-0 w-full bg-blue-300 p-4 shadow-md md:static md:w-auto md:p-0 md:bg-transparent md:shadow-none md:flex ${
             isMenuOpen ? "block" : "hidden"
           }`}
           id="navbar-user"
         >
-          <ul className="flex flex-col font-medium space-y-3 md:space-y-0 md:flex-row md:space-x-8">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
             <li>
               <Link
                 to="/main-home"
