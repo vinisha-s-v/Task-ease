@@ -9,7 +9,7 @@ const NavigationBar = () => {
     <nav className="bg-blue-300 py-2 fixed w-full top-0 z-50 shadow-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
-        <div className="text-lg font-semibold text-white">MyApp</div>
+        <div className="text-lg font-semibold text-white">TaskEase</div>
 
         {/* Profile Icon - Always on Right */}
         <div className="md:order-2 flex items-center space-x-3">
