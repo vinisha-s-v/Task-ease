@@ -110,7 +110,7 @@ const Tasks = () => {
   const restoreTask = async (task) => {
     try {
       const response = await axios.post(
-        "https://task-ease-oh5d.onrender.com/api/users/tasks/create",
+     `https://task-ease-oh5d.onrender.com/api/users/tasks/restore/${taskId}`,
         {
           title: task.title,
           description: task.description,
