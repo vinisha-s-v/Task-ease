@@ -37,9 +37,11 @@ const NavigationBar = () => {
 
         
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-user"
-          >
+          className={`absolute top-16 left-0 w-full bg-blue-300 p-4 shadow-md md:static md:w-auto md:p-0 md:bg-transparent md:shadow-none md:flex ${
+            isMenuOpen ? "block" : "hidden"
+          }`}
+          id="navbar-user"
+        >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-blue-300 md:dark:bg-blue-300 dark:border-gray-700">
               <li>
                 <Link
