@@ -21,7 +21,8 @@ const Tasks = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);//for updating
 
-  const [deletedTask, setDeletedTask] = useState(null);
+  
+  
   const [taskToDelete, setTaskToDelete] = useState(null)//for deleting
 
 
@@ -181,6 +182,40 @@ const Tasks = () => {
       >
         <FaPlus size={24} />
       </button>  */}
+
+            {/* UPDATED: Flex container to include Sidebar and Main Content */}
+            <div className="flex">
+        {/* UPDATED: Sidebar for medium and larger screens */}
+        <div className="hidden md:block w-1/4">
+          <NavigationBar />
+        </div>
+
+
+       {/* UPDATED: Main content area */}
+       <div className="w-full md:w-3/4 p-4">
+          {/* UPDATED: Mobile view - Profile and Completed Tasks */}
+          <div className="md:hidden mb-4 space-y-4">
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-bold mb-2">Profile</h2>
+              {/* Replace with actual profile data */}
+              <p>Name: John Doe</p>
+              <p>Email: john.doe@example.com</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow">
+              <h2 className="text-lg font-bold mb-2">Completed Tasks</h2>
+              {tasks.filter((task) => task.completed).length > 0 ? (
+                tasks
+                  .filter((task) => task.completed)
+                  .map((task) => (
+                    <div key={task.id} className="border-b py-1">
+                      <p className="text-sm">{task.title}</p>
+                    </div>
+                  ))
+              ) : (
+                <p className="text-sm">No completed tasks</p>
+              )}
+            </div>
+          </div>
       <button
       onClick={openForm}
   aria-label="Add Task"
@@ -295,6 +330,7 @@ const Tasks = () => {
             </button>
           </div>
         </div>
+        
       )}
 
 <ConfirmationModal
@@ -302,6 +338,8 @@ const Tasks = () => {
         onConfirm={handleConfirmDelete}
         onCancel={() => setShowModal(false)}
    />
+    </div>
+    </div>
     </div>
     
   );
