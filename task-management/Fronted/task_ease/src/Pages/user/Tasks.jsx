@@ -219,8 +219,7 @@ const Tasks = () => {
       <button
       onClick={openForm}
   aria-label="Add Task"
-  className="fixed z-30 bottom-16 right-10 bg-blue-400 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-blue-600"
->
+  className="fixed z-30 bottom-16 right-10 bg-blue-400 text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shadow-lg hover:bg-blue-600">
   <svg
     fill="currentColor"
     height="24"
@@ -303,6 +302,8 @@ const Tasks = () => {
           </p>
         )}
       </div>
+      </div>
+      </div>
 
       {isOpenForm && (
         <div className="fixed inset-0 bg-opacity-50 flex justify-center z-50 my-20">
@@ -332,6 +333,37 @@ const Tasks = () => {
         </div>
         
       )}
+      {/* Create Task Modal */}
+      {isOpenForm && (
+        <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full relative">
+            <CreateTaskForm onClose={closeForm} />
+            <button
+              onClick={closeForm}
+              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+       {/* Update Task Modal */}
+       {selectedTask && (
+        <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full relative">
+            <UpdateTaskForm
+              task={selectedTask}
+              onClose={() => setSelectedTask(null)}
+            />
+            <button
+              onClick={closeForm}
+              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
 
 <ConfirmationModal
         show={showModal}
@@ -339,8 +371,8 @@ const Tasks = () => {
         onCancel={() => setShowModal(false)}
    />
     </div>
-    </div>
-    </div>
+   
+   
     
   );
 };
