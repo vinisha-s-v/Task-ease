@@ -19,14 +19,12 @@ const Tasks = () => {
   const [isOpenForm, setOpenForm] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);//for updating
+  const [selectedTask, setSelectedTask] = useState(null); //for updating
 
-  
-  
-  const [taskToDelete, setTaskToDelete] = useState(null)//for deleting
+  const [deletedTask, setDeletedTask] = useState(null);
+  const [taskToDelete, setTaskToDelete] = useState(null); //for deleting
 
-
- const [taskUpdated,setTaskUpdated]=useState(false);
+  const [taskUpdated, setTaskUpdated] = useState(false);
 
   const openForm = () => {
     setOpenForm(true);
@@ -39,19 +37,17 @@ const Tasks = () => {
 
   useEffect(() => {
     if (token) {
-
       fetchTasks(); // Fetch tasks only if token exists (indicating the user is logged in)
     } else {
       navigate("/login"); // Redirect to login if no token is found
     }
-  }, [ token, navigate,tasks,taskUpdated]);
-
+  }, [token, navigate, tasks, taskUpdated]);
 
   const fetchTasks = async () => {
     console.log("Fetching tasks...");
     try {
       const response = await axios.get(
-       "https://task-ease-oh5d.onrender.com/api/users/tasks",
+        "https://task-ease-oh5d.onrender.com/api/users/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,6 +61,7 @@ const Tasks = () => {
       console.error(error);
     }
   };
+
   const handleRemoveClick = (taskId) => {
     setTaskToDelete(taskId);
     setShowModal(true); // Show confirmation modal
@@ -75,20 +72,20 @@ const Tasks = () => {
       deleteTask();
     }
   };
- 
+
   const deleteTask = async () => {
     if (!taskToDelete) return;
 
     try {
-        await axios.delete(`https://task-ease-oh5d.onrender.com/api/users/tasks/${taskToDelete}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        });
+      await axios.delete(`https://task-ease-oh5d.onrender.com/api/users/tasks/${taskToDelete}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-        setTasks(tasks.filter((task) => task.id !== taskToDelete));
-        toast.success("Task deleted successfully!");
+      setTasks(tasks.filter((task) => task.id !== taskToDelete));
+      toast.success("Task deleted successfully!");
 
       toast.info(
         <div>
@@ -108,10 +105,11 @@ const Tasks = () => {
     }
     setShowModal(false);
   };
+
   const restoreTask = async (task) => {
     try {
       const response = await axios.post(
-     `https://task-ease-oh5d.onrender.com/api/users/tasks/restore/${task.id}`,
+        `https://task-ease-oh5d.onrender.com/api/users/tasks/restore/${task.id}`,
         {
           title: task.title,
           description: task.description,
@@ -141,40 +139,32 @@ const Tasks = () => {
     }
   };
 
-  const updateTaskStatus =async(taskId)=>{
-    console.log("Task ID:", taskId); 
-    try{
-      const token = localStorage.getItem('authToken'); 
-      const response = await axios.put(`https://task-ease-oh5d.onrender.com/api/users/tasks/${taskId}/mark-completed`, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+  const updateTaskStatus = async (taskId) => {
+    console.log("Task ID:", taskId);
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.put(
+        `https://task-ease-oh5d.onrender.com/api/users/tasks/${taskId}/mark-completed`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setTaskUpdated(!taskUpdated); // Trigger re-fetch of tasks
       toast.success("Task marked as completed");
-      
-    
-      // setTasks(response.data.reverse());
-      // console.log("Response:", response);
-      // setTaskUpdated(!taskUpdated);
 
-      toast.success("Task marked as completed")
-
+      toast.success("Task marked as completed");
+    } catch (error) {
+      console.error("Error updating task status:", error);
+      toast.error("Failed to update task status");
     }
-    catch(error){
-      console.error("Error updating task status:",error);
-      toast.error("Failed to update task status")
-    }
-
-  }
-
-
+  };
 
   return (
     <div className="relative h-screen w-full bg-blue-50">
-     
-     
       {/* <ToastContainer />
        <button
         onClick={openForm}
@@ -182,57 +172,23 @@ const Tasks = () => {
       >
         <FaPlus size={24} />
       </button>  */}
-
-            {/* UPDATED: Flex container to include Sidebar and Main Content */}
-            <div className="flex">
-        {/* UPDATED: Sidebar for medium and larger screens */}
-        <div className="hidden md:block w-1/4">
-          <NavigationBar />
-        </div>
-
-
-       {/* UPDATED: Main content area */}
-       <div className="w-full md:w-3/4 p-4">
-          {/* UPDATED: Mobile view - Profile and Completed Tasks */}
-          <div className="md:hidden mb-4 space-y-4">
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h2 className="text-lg font-bold mb-2">Profile</h2>
-              {/* Replace with actual profile data */}
-              <p>Name: John Doe</p>
-              <p>Email: john.doe@example.com</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h2 className="text-lg font-bold mb-2">Completed Tasks</h2>
-              {tasks.filter((task) => task.completed).length > 0 ? (
-                tasks
-                  .filter((task) => task.completed)
-                  .map((task) => (
-                    <div key={task.id} className="border-b py-1">
-                      <p className="text-sm">{task.title}</p>
-                    </div>
-                  ))
-              ) : (
-                <p className="text-sm">No completed tasks</p>
-              )}
-            </div>
-          </div>
       <button
-      onClick={openForm}
-  aria-label="Add Task"
-  className="fixed z-30 bottom-16 right-10 bg-blue-400 text-white rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shadow-lg hover:bg-blue-600">
-  <svg
-    fill="currentColor"
-    height="24"
-    stroke="currentColor"
-    strokeWidth="0"
-    viewBox="0 0 448 512"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-  </svg>
-</button>
-
+        onClick={openForm}
+        aria-label="Add Task"
+        className="fixed z-30 bottom-16 right-10 bg-blue-400 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-blue-600"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          stroke="currentColor"
+          strokeWidth="0"
+          viewBox="0 0 448 512"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+        </svg>
+      </button>
 
       <div className="w-full py-4">
         <h1 className="text-2xl font-bold flex justify-center text-blue-800">
@@ -240,9 +196,10 @@ const Tasks = () => {
         </h1>
 
         <button
-          onClick={() => navigate("/home")} className="absolute top-4 left-4 p-2 bg-blue-600 text-white rounded-full shadow-md" 
+          onClick={() => navigate("/home")}
+          className="absolute top-4 left-4 p-2 bg-blue-600 text-white rounded-full shadow-md"
         >
-     <AiOutlineArrowLeft size={24} />
+          <AiOutlineArrowLeft size={24} />
         </button>
       </div>
 
@@ -251,11 +208,13 @@ const Tasks = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
             {tasks.map((task) => (
               <div
-              key={task.id}
-              className={`p-4 rounded-md shadow-md hover:transition-transform duration-300 ease-in-out transform hover:scale-95 ${
-                task.completed ? "bg-gray-200 opacity-50 cursor-not-allowed" : "bg-blue-200"
-              }`}
-            >
+                key={task.id}
+                className={`p-4 rounded-md shadow-md hover:transition-transform duration-300 ease-in-out transform hover:scale-95 ${
+                  task.completed
+                    ? "bg-gray-200 opacity-50 cursor-not-allowed"
+                    : "bg-blue-200"
+                }`}
+              >
                 <h3 className="text-xl font-semibold mb-2">{task.title}</h3>
                 <p className="text-gray-600 mb-1">{task.description}</p>
                 <p className="text-green-600 mb-1">
@@ -269,28 +228,24 @@ const Tasks = () => {
                 </p>
                 <div className="flex space-x-2 justify-end mt-2">
                   <button
-
                     onClick={() => handleUpdate(task)}
                     className="bg-blue-400 text-white px-2 py-1 rounded-md hover:bg-blue-500"
                   >
                     Update
                   </button>
                   <button
-                 
-
                     onClick={() => handleRemoveClick(task.id)}
                     className="bg-blue-700 text-white px-2 py-1 rounded-md hover:bg-blue-800"
                   >
                     Delete Task
                   </button>
-{task.completed==false && (
-                  <button
-                    onClick={() => updateTaskStatus(task.id)}
-                    
-                    className="bg-blue-950 text-white px-2 py-1 rounded-md hover:bg-blue-600"
-                  >
-                    Mark as Completed
-                  </button>
+                  {task.completed == false && (
+                    <button
+                      onClick={() => updateTaskStatus(task.id)}
+                      className="bg-blue-950 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+                    >
+                      Mark as Completed
+                    </button>
                   )}
                 </div>
               </div>
@@ -301,8 +256,6 @@ const Tasks = () => {
             Please add your First Task!
           </p>
         )}
-      </div>
-      </div>
       </div>
 
       {isOpenForm && (
@@ -331,49 +284,14 @@ const Tasks = () => {
             </button>
           </div>
         </div>
-        
-      )}
-      {/* Create Task Modal */}
-      {isOpenForm && (
-        <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full relative">
-            <CreateTaskForm onClose={closeForm} />
-            <button
-              onClick={closeForm}
-              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
-       {/* Update Task Modal */}
-       {selectedTask && (
-        <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full relative">
-            <UpdateTaskForm
-              task={selectedTask}
-              onClose={() => setSelectedTask(null)}
-            />
-            <button
-              onClick={closeForm}
-              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
-            >
-              &times;
-            </button>
-          </div>
-        </div>
       )}
 
-<ConfirmationModal
+      <ConfirmationModal
         show={showModal}
         onConfirm={handleConfirmDelete}
         onCancel={() => setShowModal(false)}
-   />
+      />
     </div>
-   
-   
-    
   );
 };
 
